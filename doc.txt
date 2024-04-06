@@ -1,0 +1,4 @@
+1. understand the animations of the dating.html
+2. COMMENTS
+3. Understand all transition stuff
+4. if get no match page

@@ -1,0 +1,479 @@
+/*Login.html css*/
+
+/* to remove default margin and padding values*/
+*{
+  margin: 0;
+  padding: 0;
+  font-family: Poppins;
+}
+
+@keyframes animation1 {
+  0% {
+    top: 100%;
+    height: 0;
+  }
+  50% {
+    
+    height: 100%;
+    top: 0;
+  }
+  100% {
+    top: 0;
+    height: 0;
+  }
+}
+.login-photos{
+  width: 600px;
+}
+
+.login-photos1{
+  width: 250px;
+  height: 250px;
+  background-color: #98005B;
+  margin-left: 250px;
+  margin-top: 50px;
+  border: solid black 1px;
+}
+.login-photos2{
+  width: 250px;
+  height: 250px;
+  background-color: #98005B;
+  margin-top: -50px ;
+  margin-left: 450px;
+  border: solid black 1px;
+}
+.animated-div {
+  animation: animation1 0.5s ease-out 0s 1;
+  position: absolute;
+  background-color: #210634;
+  z-index: 100;
+  width: 100%;
+}
+
+.login-form{
+  
+  margin-right: 10%;
+  margin-top: -470px;
+  background-color: rgba(33, 6, 52, 70%) ;
+  padding: 10px;
+  /* text-align: center; */
+  margin-left: 65%;
+  border-radius: 20px;
+  color: white;
+  height: 450px;
+
+}
+
+.login-form h1{
+  text-align: center;
+  margin-top: 25px;
+}
+
+.login-form form{
+  margin-top: 19%;
+  margin-left: 20%;
+}
+
+.login-form input{
+  border-radius: 3px;
+  border: 0;
+  padding: 5px;
+  width: 200px;
+}
+
+.login-button{
+  margin-top: 10px;
+  width: 65%;
+  height: 40px;
+  border-radius: 20px;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  border: 0;  
+  cursor: pointer;
+  background: rgb(253,47,111);
+background: linear-gradient(90deg, rgba(253,47,111,1) 0%, rgba(254,87,64,1) 100%);
+}
+
+.form-extras{
+  margin-top: 30px;
+  text-align: center;
+}
+
+.form-extras a{
+  text-decoration: none;
+  color: white;
+  font-style: italic;
+  transition: all 500ms;
+}
+
+.form-extras a:hover{
+  text-decoration: underline;
+  font-size: 18px;
+}
+
+.title-login-page{
+  font-size: 50px;
+  color: white;
+  position: absolute;
+  top: 20px;
+  left: 110px;
+  font-family: "Bebas Neue", sans-serif;
+
+}
+
+.logo{
+  width: 80px;
+  height: 80px;
+}
+
+.login-logo-div{
+  margin: 20px 0 0 25px;
+}
+
+.logo-tagline{
+  font-family: Cedarville Cursive;
+  color: #210634;
+  position: absolute;
+  top: 65px;
+  font-size: 20px;
+}
+#error_message, #error_message_forgot {
+  margin-top: -30px;
+  background-color: #fce4e4;
+  border: 1px #cc0033; 
+  width: 190px;
+  font-size: 12px;
+  text-align: center;
+  border-radius: 5px;
+  color: #cc0033;
+  line-height: 18px;
+  text-shadow: 1px 1px rgba(250,250,250,.3);
+  text-decoration: underline;
+  margin-bottom: 20px;
+}
+
+
+
+
+
+
+#match-image{
+    display: block;
+    width: 200px;
+    height: 200px;
+}
+
+/*
+color1: #FF4D4C
+primary color: #FF009C
+dark ke lia color: #210634
+nice pinkish pruple color for gradiet #98005B
+*/
+
+/*Forgot page styles*/
+
+#checkSecretAnswerInput, #secretAnswer{
+    display: none;
+}
+
+#next-button {
+  display: inline-flex; /* Changed display property */
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  color: white;
+  font-size: 25px;
+  font-weight: 700;
+  border: 0;  
+  cursor: pointer;
+  background: rgb(253,47,111);
+  background: linear-gradient(90deg, rgba(253,47,111,1) 0%, rgba(254,87,64,1) 100%);
+}
+
+#secretQuestion{
+  margin-top: 20px;
+}
+
+
+  .scroll-container {
+    width: 100%;
+    overflow-x: scroll;
+    white-space: nowrap;
+    display: flex;
+    scroll-snap-type: x mandatory;
+  }
+  .box {
+    text-align: center;
+    width: 100vw;
+    height: 80vh;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .box img{
+    width: 200px;
+    height: 200px;
+  }
+
+.smaller-container{
+  width: 400px;
+  white-space: initial;
+}
+
+
+/* code for dating.html*/
+
+
+/* navbar css */
+.navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 15%;
+  background-color: #210634;
+  
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+.navbar li a {
+  display: block;
+  padding: 8px 16px;
+  color: white;
+  text-decoration: none;
+}
+
+.navbar li a.active {
+  background: rgb(253,47,111);
+  background: linear-gradient(90deg, rgba(253,47,111,1) 0%, #98005B 100%);
+  color: white;
+}
+
+.navbar li a:hover:not(.active) {
+  background-color: #FF4D4C;
+  color: white;
+}
+
+.nav-logo{
+  margin: 10px;
+  width: 50px;
+}
+
+.title-nav{
+  font-size: 40px;
+  position: absolute;
+  top: 10px;
+  left: 70px;
+  color: white;
+  font-family: "Bebas Neue", sans-serif;
+
+
+}
+
+/* dating form css */
+
+nav{
+  position: absolute;
+  left: 0%;
+  top: 0;
+}
+
+
+.dating-form{
+  margin-left: 25%;
+  
+  color: white;
+  width: 420px;
+  margin: auto;
+  
+}
+
+.dating-form h2{
+  font-size: 30px;
+  color: white;
+  padding-left: 10px;
+  margin-top: 100px;
+  background-color: #210634;
+  border-radius: 20px 20px 0 0;
+ 
+}
+
+.actual-form{
+  margin-top: 1px;
+  background-color: #210634;
+  height: 350px;
+  overflow-y: scroll;
+  padding: 30px 30px 30px 40px;
+  border-radius: 0 0 20px 20px;
+}
+.actual-form::-webkit-scrollbar {
+  display: none;
+}
+
+.actual-form label{
+  font-style: italic;
+}
+
+/*styling individual elemennts*/
+#rollNumber, #name, #year, #age, #Male, #Art, #Photography, #email{
+  margin-bottom: 12px;
+}
+
+.dating-submit{
+  margin-top: 10px;
+  margin-left: 60px;
+  width: 65%;
+  height: 40px;
+  border-radius: 20px;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  border: 0;  
+  cursor: pointer;
+  background: rgb(253,47,111);
+background: linear-gradient(90deg, rgba(253,47,111,1) 0%, rgba(254,87,64,1) 100%);
+}
+#Sports{
+  margin-left: 50px;
+}
+#Music{
+  margin-left: 67px;
+}
+#Technology{
+  margin-left: 48px;
+}
+#Art{
+  margin-left: 61px;
+}
+#Cooking{
+  margin-left: 58px;
+}
+#Gardening{
+  margin-left: 66px;
+}
+
+
+/* foundMatch.html  */
+
+.match-decorated{
+  font-size: 40px;
+}
+.match-forYou{
+  font-size: 20px;
+}
+
+.head-match{
+  display: inline-block;
+  margin-left: 15%;
+}
+
+.card{
+  width: 20%;
+  height: 450px;
+  margin-left: 50%;
+  margin-top: -125px ;
+  box-shadow: inset 5px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  background-color: #d4eae9;
+
+  
+}
+
+.front {
+position: absolute;
+width: 20%;
+height: 450px;
+border: 1px solid #4c1f78;
+backface-visibility: hidden;
+background: linear-gradient(90deg, #FFB3CB 0%, #B177D9 100%);
+background-size: contain;
+
+transform-origin: 0% 50%;
+transform: perspective(800px);
+transition: all 1s ease-in-out;
+
+}
+
+.card:hover .front {
+transform: perspective(800px) rotateY(-170deg);
+background-color: rgb(205, 205, 205);
+}
+.card:hover .back {
+transform: perspective(800px) rotateY(-170deg);
+box-shadow: 7px 0px 2px 0px rgba(0, 0, 0, 0.3),
+inset 2px 0px 15px 0px rgba(0, 0, 0, 0.1);
+background-color: #d4eae9;
+}
+.back {
+position: absolute;
+width: 20%;
+height: 450px;
+margin: -10px 0px 0px -10px;
+margin: auto;
+
+box-shadow: inset 5px 0px 15px 0px rgba(0, 0, 0, 0.1),
+3px 0px 3px 1px rgba(0, 0, 0, 0.3);
+transform-style: preserve-3d;
+transform-origin: 0% 50%;
+transform: perspective(800px) rotateY(0deg);
+transition: all 1s ease-in-out;
+background-color: #d4eae9;
+}
+.text-container {
+width: 100%;
+height: 80%;
+margin-top: 40px;
+margin-right: 20px;
+margin-left: 20px;
+
+color: #1a0303;
+}
+
+
+
+.progress-bar{
+  width: 300px;
+  height: 10px;
+  background-color: #98005B;
+  border-radius: 10px;
+}
+.progress{
+  width: 100px;
+  height: 10px;
+  background-color: #FF4D4C;
+  border-radius: 10px;
+}
+
+
+
+
+
+.container {
+  position: relative;
+  height: 100vh; /* Ensure container fills the viewport */
+  overflow: hidden; /* Hide overflowing images */
+}
+
+.image {
+  position: absolute;
+  top: 0; /* Initial position */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%);
+  animation: moveImage 10s linear infinite;
+}
+
+@keyframes moveImage {
+  0% {
+    transform: translateY(-100%); /* Initial position */
+  }
+  100% {
+    transform: translateY(100%); /* Final position */
+  }
+}

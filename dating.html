@@ -1,0 +1,110 @@
+<!DOCTYPE Male>
+<html>
+    <head>
+        <title>Finder</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+
+        <!-- google fonts imported from https://fonts.google.com/ -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Mukta:wght@200;300;400;500;600;700;800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cedarville+Cursive&family=Mukta:wght@200;300;400;500;600;700;800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cedarville+Cursive&family=Mukta:wght@200;300;400;500;600;700;800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    </head>
+    <body style="background-color: #21063485;">
+        <!--code for navbar-->
+        <nav>
+        <ul class="navbar">
+            <img src="./assets/logo.png" alt="logo" class="nav-logo">
+            <span class="title-nav">Finder</span>
+            <li><a class="active" href="dating.html">Home</a></li>
+            <li><a href="/match.html">Your Match!</a></li>
+            <li><a href="/scroll_or_swipe.html">Find new people!!</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="/login.html">Log out</a></li>
+          </ul>
+        </nav>
+        
+        <form class="dating-form">
+            <h2>Fill your personal details</h2>
+            <div class="actual-form">
+                  
+            <label for="rollNumber">IITB Roll Number: </label><br>
+            <input type="text" name="rollNumber" id="rollNumber">
+            <br>
+            <label for="name">Name: </label><br>
+            <input type="text" name="name" id="name">
+            <br>
+            <label for="year">Year of Study: </label><br>
+            <select name="year" id="year">
+                <option value="1st">1st</option>
+                <option value="2nd">2nd</option>
+                <option value="3rd">3rd</option>
+                <option value="4th">4th</option>
+                <option value="5th">5th</option>
+            </select>
+            <br>
+            <label for="age">Age: </label><br>
+            <input type="number" name="age" id="age">
+            <br>
+            <label for="gender">Gender:</label><br>
+            <input type="radio" id="Male" name="gender" value="Male">
+            <label for="Male">Male</label>
+            <input type="radio" id="Female" name="gender" value="Female">
+            <label for="Female">Female</label>
+            <input type="radio" id="Other" name="gender" value="Other">
+            <label for="Other">Other</label>
+            <br>
+            <label>Interests:</label><br>
+            <input type="checkbox" id="Traveling" name="Traveling" value="Traveling" >
+            <label for="Traveling">Traveling</label>
+            <input type="checkbox" id="Sports" name="Sports" value="Sports">
+            <label for="Sports">Sports</label><br>
+            <input type="checkbox" id="Movies" name="Movies" value="Movies">
+            <label for="Movies">Movies</label>
+            <input type="checkbox" id="Music" name="Music" value="Music">
+            <label for="Music">Music</label><br>
+            <input type="checkbox" id="Literature" name="Literature" value="Literature">
+            <label for="Literature">Literature</label>
+            <input type="checkbox" id="Technology" name="Technology" value="Technology">
+            <label for="Technology">Technology</label><br>
+            <input type="checkbox" id="Fashion" name="Fashion" value="Fashion">
+            <label for="Fashion">Fashion</label>
+            <input type="checkbox" id="Art" name="Art" value="Art">
+            <label for="Art">Art</label><br>
+            <label>Hobbies:</label><br>
+            <input type="checkbox" id="Reading" name="Reading" value="Reading">
+            <label for="Reading">Reading</label>
+            <input type="checkbox" id="Cooking" name="Cooking" value="Cooking">
+            <label for="Cooking">Cooking</label><br>
+            <input type="checkbox" id="Coding" name="Coding" value="Coding">
+            <label for="Coding">Coding</label>
+            <input type="checkbox" id="Gardening" name="Gardening" value="Gardening">
+            <label for="Gardening">Gardening</label><br>
+            <input type="checkbox" id="Painting" name="Painting" value="Painting">
+            <label for="Painting">Painting</label><br>
+            <input type="checkbox" id="scrolling" name="scrolling" value="scrolling">
+            <label for="scrolling">Watching YouTube/Instagram</label><br>
+            <input type="checkbox" id="playMusic" name="playMusic" value="playMusic">
+            <label for="playMusic">Playing musical instruments</label><br>
+            <input type="checkbox" id="Photography" name="Photography" value="Photography">
+            <label for="Photography">Photography</label><br>
+            <label for="email">Email</label><br>
+            <input type="email" name="email" id="email"><br>
+            <label for="pfp">Photo: </label>
+            <input type="file" name="pfp" id="pfp" class="pfp-input"><br>
+            <!-- <div class="progress-bar">
+                <div class="progress"></div>
+            </div> -->
+        </div>
+            <button type="button" onclick="submitHandler()" class="dating-submit">Submit</button>
+        </form>
+        
+        <script src="script.js"></script>
+    </body>
+</html>

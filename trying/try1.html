@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Append to JSON</title>
+</head>
+<body>
+
+<h2>Append to JSON</h2>
+
+<form id="myForm">
+  <label for="name">Name:</label><br>
+  <input type="text" id="name" name="name"><br>
+  <label for="email">Email:</label><br>
+  <input type="email" id="email" name="email"><br>
+  <label for="age">Age:</label><br>
+  <input type="number" id="age" name="age"><br><br>
+  <input type="submit" value="Submit">
+</form>
+
+<script>
+document.getElementById("myForm").addEventListener("submit", function(event) {
+  event.preventDefault(); // Prevent form submission
+
+  // Get form data
+  var formData = new FormData(this);
+  var newEntry = {};
+
+  // Convert FormData to JSON
+  formData.forEach(function(value, key){
+    newEntry[key] = value;
+  });
+
+  // Read existing JSON file
+  fetch('data.json')
+  .then(response => response.json())
+  .then(data => {
+    // Append new data
+    data.push(newEntry);
+
+    // Convert JSON object to string
+    var jsonString = JSON.stringify(data);
+
+    // Write back to the file
+    var blob = new Blob([jsonString], {type: "application/json"});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'updatedData.json';
+    a.click();
+  })
+  .catch(error => console.error('Error reading data:', error));
+});
+</script>
+
+</body>
+</html>

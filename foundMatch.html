@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<HTML>
+    <HEAD>
+        <title>CHOMU</title>
+        <link rel="stylesheet" href="style.css">
+                <!-- google fonts imported from https://fonts.google.com/ -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Mukta:wght@200;300;400;500;600;700;800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cedarville+Cursive&family=Mukta:wght@200;300;400;500;600;700;800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cedarville+Cursive&family=Mukta:wght@200;300;400;500;600;700;800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+
+    </HEAD>
+    <body style="background-color:#f3f2f2;" onload="renderMatchFound()">
+      <nav>
+        <ul class="navbar">
+            <img src="./assets/logo.png" alt="logo" class="nav-logo">
+            <span class="title-nav">Finder</span>
+            <li><a  href="dating.html">Home</a></li>
+            <li><a class="active" href="/match.html">Your Match!</a></li>
+            <li><a href="/scroll_or_swipe.html">Find new people!!</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="/login.html">Log out</a></li>
+          </ul>
+        </nav>
+        <div class="dating-everything">
+          <div class="head-match"><h1 class="heading-match">We found a </h1> <h1 class="match-decorated">Match</h1> <h1 class="match-forYou" > for you</h1></div>
+            <div class="card">
+                <div class="back"> </div>
+                <div class="front"><h1>Your match is .....</h1> <p>Hover over here to reveal your match</p></div>
+                <div class="text-container">
+                  <h2 id="nameMatch"></h2>
+                    <img src="" id="match-image" width="90%">
+                    <p id="primaryDetails" ></p>
+                    
+                </div>
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </body>
