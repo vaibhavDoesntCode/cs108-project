@@ -137,7 +137,7 @@ function renderMatchFound(){
     var storedJsonString = localStorage.getItem('matchedStudent');
     var matchedStudent = JSON.parse(storedJsonString);
     document.getElementById('nameMatch').innerHTML = matchedStudent.Name
-    document.getElementById('primaryDetails').innerHTML = matchedStudent.Age + ' ' + matchedStudent["Year of Study"] + ' year ' + matchedStudent["IITB Roll Number"]
+    document.getElementById('primaryDetails').innerHTML =  matchedStudent.Name + " is " + matchedStudent.Age + " years old, Currently in " + matchedStudent["Year of Study"] + ' year.'
     document.getElementById('match-image').setAttribute('src', matchedStudent.Photo)
 
 }
