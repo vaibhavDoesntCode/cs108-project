@@ -39,7 +39,7 @@
   height: 250px;
   background-color: #98005B;
   margin-top: -50px ;
-  margin-left: 450px;
+  margin-left: 435px;
   border: solid black 1px;
 }
 .animated-div {
@@ -60,7 +60,7 @@
   margin-left: 65%;
   border-radius: 20px;
   color: white;
-  height: 450px;
+  height: 435px;
 
 }
 
@@ -213,6 +213,7 @@ nice pinkish pruple color for gradiet #98005B
     scroll-snap-type: x mandatory;
     color: black;
     font-family: Mukta;
+    box-shadow: #1a0303 20px 20px 20px;
   }
 
 .scroll-container::-webkit-scrollbar {
@@ -417,7 +418,7 @@ background: linear-gradient(90deg, rgba(253,47,111,1) 0%, rgba(254,87,64,1) 100%
 
 .card{
   width: 20%;
-  height: 450px;
+  height: 435px;
   margin-left: 55%;
   margin-top: -90px ;
   box-shadow: inset 5px 0px 10px 0px rgba(0, 0, 0, 0.1);
@@ -430,10 +431,10 @@ background: linear-gradient(90deg, rgba(253,47,111,1) 0%, rgba(254,87,64,1) 100%
 .front {
 position: absolute;
 width: 20%;
-height: 450px;
+height: 435px;
 border: 1px solid #4c1f78;
 backface-visibility: hidden;
-background: linear-gradient(45deg, #FF4D4C 0, #5C003A  100%);
+background-image: url(./assets/card-frontPage.webp);
 background-size: contain;
 
 transform-origin: 0% 50%;
@@ -455,7 +456,7 @@ background-color: pink;
 .back {
 position: absolute;
 width: 20%;
-height: 450px;
+height: 435px;
 margin: -10px 0px 0px -10px;
 margin: auto;
 
@@ -486,11 +487,44 @@ color: #1a0303;
 .head-card{
   color:#210634 ;
   margin-top: 50%;
+  background-color:#cc003380;
 }
 .IDontKowWhatToNameIt{
-  color: grey;
+  color: rgb(56, 56, 56);
   margin-top: 50%;
+  background-color:#cc003380;
 }
+
+#linkOnCard{
+  font-style: italic;
+  color: #210634;
+  margin-top: 20px;
+
+}
+#linkOnCard:hover{
+  color: #98005B;
+}
+
+
+
+/* about us page design */
+.about-content{
+  margin-left: 16%;
+  font-family: "Pacifico", cursive;
+  font-size: 20px;
+}
+
+
+.heading-about{
+  size: 50px;
+  font-family: Cedarville Cursive;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+
+
 
 
 

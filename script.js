@@ -118,7 +118,7 @@ function findMatch(user){
 
         while(index < nStudentJson){
             score = scoreCalculator(user, student[index])
-            if(score >= maxScore){
+            if(score > maxScore){
                 indexMaxScore = index;
                 maxScore = score;
             }
@@ -140,6 +140,7 @@ function renderMatchFound(){
     document.getElementById('nameMatch').innerHTML = matchedStudent.Name
     document.getElementById('primaryDetails').innerHTML =  matchedStudent.Name + " is " + matchedStudent.Age + " years old, Currently in " + matchedStudent["Year of Study"] + ' year.'
     document.getElementById('match-image').setAttribute('src', matchedStudent.Photo)
+    document.getElementById('linkOnCard').innerHTML = "More about " + matchedStudent.Name
 
 
 }
@@ -428,3 +429,5 @@ function logoutFun(){
     localStorage.removeItem("detailsFilled");
     
 }
+
+
