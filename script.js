@@ -350,7 +350,7 @@ function scroll(){
         container = document.getElementById('scroll-container');
         for(let i = 0; i < nStudent  ; i++) {
             //putting condition so that the user dont see the matched(not good enough) person again
-            if( student[i]["IITB Roll Number"] != matchedStudent["IITB Roll Number"] ){
+           
             let div = document.createElement('div');
             div.className = "box"; // Apply the class name to the div
 
@@ -399,7 +399,7 @@ function scroll(){
             container.appendChild(div);
 
             console.log(student[i]);
-            }
+            
         }
     })
 }

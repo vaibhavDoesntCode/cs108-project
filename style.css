@@ -212,6 +212,7 @@ nice pinkish pruple color for gradiet #98005B
     display: flex;
     scroll-snap-type: x mandatory;
     color: black;
+    font-family: Mukta;
   }
 
 .scroll-container::-webkit-scrollbar {
