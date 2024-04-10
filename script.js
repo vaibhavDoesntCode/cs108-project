@@ -95,10 +95,11 @@ function submitHandler(){
         "Email": email,
         "Photo": pfp
     }
+
+    localStorage.setItem('detailsFilled', true)
     
     findMatch(user_data);
 }
-
 
 
 
@@ -139,6 +140,7 @@ function renderMatchFound(){
     document.getElementById('nameMatch').innerHTML = matchedStudent.Name
     document.getElementById('primaryDetails').innerHTML =  matchedStudent.Name + " is " + matchedStudent.Age + " years old, Currently in " + matchedStudent["Year of Study"] + ' year.'
     document.getElementById('match-image').setAttribute('src', matchedStudent.Photo)
+
 
 }
 
@@ -355,10 +357,13 @@ function scroll(){
             //create a container for the student name
             let smallerContainer = document.createElement('div');
             smallerContainer.className = "smaller-container"; // Apply a class name for styling
-
+            let UltrasmallerContainer = document.createElement('div');
+            UltrasmallerContainer.className = "ultra-smaller-container"; // Apply a class name for styling
+            
             // student name element
             let studentName = document.createElement('p');
-            studentName.innerHTML = student[i].Name;
+            studentName.innerHTML = student[i].Name + ", "  + student[i].Age ;
+            studentName.className = 'swipe-name'
 
             //student image element
             let studentImage = document.createElement('img');
@@ -366,13 +371,13 @@ function scroll(){
 
             //student basic details
             let basicDetails = document.createElement('p')
-            basicDetails.innerHTML = "Currently in " + student[i]["Year of Study"] + " year.<br>Age: " + student[i].Age + "<br>IITB Roll Number: "+ student[i]["IITB Roll Number"]  
+            basicDetails.innerHTML = "Currently in " + "<b>" + student[i]["Year of Study"]+ "</b>" + " year.<br>" + "IITB Roll Number: "+ student[i]["IITB Roll Number"]  
 
             //interests and hobbies
             let intAndHob = document.createElement('p');
-            intAndHob.innerHTML = "Interests: ";
-            for(x=0; x<student[i].Interests.length-1; x+=1) intAndHob.innerHTML += student[i].Interests[x] + ", "
-            intAndHob.innerHTML += student[i].Interests[student[i].Interests.length-1] + "<br>Hobbies: "
+            intAndHob.innerHTML = "<b>Interests</ b> <br> ";
+            for(x=0; x<student[i].Interests.length-1; x+=1) intAndHob.innerHTML += student[i].Interests[x] + ",  " 
+            intAndHob.innerHTML += student[i].Interests[student[i].Interests.length-1] + "<br><b>Hobbies </b><br>"
             for(x=0; x<student[i].Hobbies.length-1; x+=1) intAndHob.innerHTML += student[i].Hobbies[x] + ", "
             intAndHob.innerHTML += student[i].Hobbies[student[i].Hobbies.length-1]
 
@@ -380,11 +385,14 @@ function scroll(){
 
 
             //add to the div
-            smallerContainer.appendChild(studentName);
+            
             smallerContainer.appendChild(studentImage);
-            smallerContainer.appendChild(basicDetails)
-            smallerContainer.appendChild(intAndHob);
+            UltrasmallerContainer.appendChild(studentName);
+            UltrasmallerContainer.appendChild(basicDetails)
+            UltrasmallerContainer.appendChild(intAndHob);
+            smallerContainer.appendChild(UltrasmallerContainer)
             div.appendChild(smallerContainer);
+            
            
 
             // Append the div to the container
@@ -396,20 +404,27 @@ function scroll(){
     })
 }
 
-function loginPageSlideShow() {
-    // Define a function to change the images
-    function changeImages() {
-        var image1 = document.getElementById("login-photos1");
-        var image2 = document.getElementById("login-photos2");
-        var x = Math.floor(Math.random() * 6); // Assuming you have 6 images named 0.png to 5.png
-        image1.src = "./assets/loginSlideShow/" + x + ".png";
-        x = Math.floor(Math.random() * 6);
-        image2.src = "./assets/loginSlideShow/" + x + ".png";
-    }
+// function loginPageSlideShow() {
+//     // Define a function to change the images
+//     function changeImages() {
+//         var image1 = document.getElementById("login-photos1");
+//         var image2 = document.getElementById("login-photos2");
+//         var x = Math.floor(Math.random() * 6); // Assuming you have 6 images named 0.png to 5.png
+//         image1.src = "./assets/loginSlideShow/" + x + ".png";
+//         x = Math.floor(Math.random() * 6);
+//         image2.src = "./assets/loginSlideShow/" + x + ".png";
+//     }
 
-    // Call the function immediately to change images on page load
-    changeImages();
+//     // Call the function immediately to change images on page load
+//     changeImages();
 
-    // Set interval to change images every 5 seconds
-    setInterval(changeImages, 5000);
+//     // Set interval to change images every 5 seconds
+//     setInterval(changeImages, 5000);
+// }
+
+
+function logoutFun(){
+    localStorage.removeItem("matchedStudent");
+    localStorage.removeItem("detailsFilled");
+    
 }

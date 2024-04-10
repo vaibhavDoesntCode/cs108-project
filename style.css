@@ -200,33 +200,61 @@ nice pinkish pruple color for gradiet #98005B
 }
 
 
+/*code for scroll*/
+
+
   .scroll-container {
-    width: 100%;
+    width: 85%;
+    margin-left: 15%;
+    background-color: #DA83C8;
     overflow-x: scroll;
     white-space: nowrap;
     display: flex;
     scroll-snap-type: x mandatory;
+    color: black;
   }
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+
   .box {
-    text-align: center;
-    width: 100vw;
+    width: 85%;
     height: 80vh;
     flex-shrink: 0;
     scroll-snap-align: start;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: inline-flex;
+    margin-left: 16%;
   }
 
   .box img{
-    width: 200px;
-    height: 200px;
+    width: 80vh;
+    height: 80vh;
+    display: inline-flex;
   }
 
 .smaller-container{
-  width: 400px;
   white-space: initial;
+  display: inline-flex;
+  gap: 10px;
 }
+
+.swipe-name{
+  font-size: 50px ;
+  margin-bottom: 20px;
+}
+
+.ultra-smaller-container{
+  font-size: 24px;
+}
+
+.box img{
+  border-radius:0 50% 50% 0;
+}
+
+
+
 
 
 /* code for dating.html*/
@@ -454,23 +482,14 @@ color: #1a0303;
 #match-image{
   margin-top: 10px;
 }
-
-
-
-.progress-bar{
-  width: 300px;
-  height: 10px;
-  background-color: #98005B;
-  border-radius: 10px;
+.head-card{
+  color:#210634 ;
+  margin-top: 50%;
 }
-.progress{
-  width: 100px;
-  height: 10px;
-  background-color: #FF4D4C;
-  border-radius: 10px;
+.IDontKowWhatToNameIt{
+  color: grey;
+  margin-top: 50%;
 }
-
-
 
 
 
