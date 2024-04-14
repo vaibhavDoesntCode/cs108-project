@@ -1,5 +1,5 @@
 <!DOCTYPE Male>
-<html>
+<>
     <head>
         <title>Finder</title>
         <link rel="stylesheet" href="style.css">
@@ -25,8 +25,21 @@
         <ul class="navbar">
             <img src="./assets/logo.png" alt="logo" class="nav-logo">
             <span class="title-nav">Finder</span>
-            <li><a  href="dating.html">Home</a></li>
-            <li><a href="/foundMatch.html">Your Match!</a></li>
+            <li><a  onclick="detailsFilled = localStorage.getItem('detailsFilled')
+                            if(detailsFilled){
+                                window.location.href='ownProfile.html'
+                            }
+                            else{
+                                window.location.href='dating.html'
+                            }
+                            ">Home</a></li>
+            <li><a onclick="detailsFilled = localStorage.getItem('detailsFilled')
+                if(detailsFilled){
+                    window.location.href = 'foundMatch.html'
+                }
+                else{
+                    window.location.href = 'detailsNotFilled.html'
+                }" >Your Match!</a></li>
             <li><a href="/scroll_or_swipe.html">Find new people!!</a></li>
             <li><a class="active" href="/about">About Us</a></li>
             <li><a href="/login.html" onclick="logoutFun()">Log out</a></li>
@@ -55,5 +68,7 @@ Continuous Improvement: We're constantly evolving and refining our platform base
 Join Us Today:
 Whether you're new to the dating scene or a seasoned pro, we invite you to join our community and embark on your journey to finding love and companionship. Sign up for free today and start exploring all that our platform has to offer. Your next great connection could be just a click away!
 </div>
-    </body>
+<script src="script.js"></script>
+
+</body>
 </html>

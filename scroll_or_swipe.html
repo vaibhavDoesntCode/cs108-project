@@ -19,8 +19,21 @@
             <ul class="navbar">
                 <img src="./assets/logo.png" alt="logo" class="nav-logo">
                 <span class="title-nav">Finder</span>
-                <li><a  href="dating.html">Home</a></li>
-                <li><a href="/foundMatch.html">Your Match!</a></li>
+                <li><a  onclick="detailsFilled = localStorage.getItem('detailsFilled')
+                    if(detailsFilled){
+                        window.location.href='ownProfile.html'
+                    }
+                    else{
+                        window.location.href='dating.html'
+                    }
+                    ">Home</a></li>
+                <li><a onclick="detailsFilled = localStorage.getItem('detailsFilled')
+                    if(detailsFilled){
+                        window.location.href = 'foundMatch.html'
+                    }
+                    else{
+                        window.location.href = 'detailsNotFilled.html'
+                    }" >Your Match!</a></li>
                 <li><a class="active" href="/scroll_or_swipe.html">Find new people!!</a></li>
                 <li><a href="/about.html">About Us</a></li>
                 <li><a href="/login.html" onclick="logoutFun()">Log out</a></li>

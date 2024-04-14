@@ -17,42 +17,27 @@
 
 
     </HEAD>
-    <body style="background-color:#f3f2f2;" onload="renderMatchFound()">
+    <body style="background-color:#f3f2f2;">
       <nav>
         <ul class="navbar">
             <img src="./assets/logo.png" alt="logo" class="nav-logo">
             <span class="title-nav">Finder</span>
-            <li><a  onclick="detailsFilled = localStorage.getItem('detailsFilled')
-              if(detailsFilled){
-                  window.location.href='ownProfile.html'
-              }
-              else{
-                  window.location.href='dating.html'
-              }
-              ">Home</a></li>
+            <li><a onclick="detailsFilled = localStorage.getItem('detailsFilled')
+                if(detailsFilled){
+                    window.location.href='ownProfile.html'
+                }
+                else{
+                    window.location.href='dating.html'
+                }
+                ">Home</a></li>
             <li><a class="active" href="/foundMatch.html">Your Match!</a></li>
             <li><a href="/scroll_or_swipe.html">Find new people!!</a></li>
             <li><a href="/about.html">About Us</a></li>
-            <li><a href="/login.html" onclick="logoutFun()">Log out</a></li>
+            <li><a href="login.html"  onclick="logoutFun()">Log out</a></li>
           </ul>
         </nav>
-        <div class="dating-everything">
-          <div class="head-match"><h1 class="heading-match">We found a  </h1> <h1 class="match-decorated">Match <img src="./assets/heart-hand-drawing.png" class="hand-drawn-heart" alt=""></h1> <h1 class="match-forYou" > for you</h1></div>
-            <div class="card">
-                <div class="back"> </div>
-                <div  class="front"><h1 class="head-card" >Your match is .....</h1> 
-                  
-                  <p class="IDontKowWhatToNameIt" >Hover over here to reveal your match</p></div>
-                <div class="text-container">
-                  <h2 id="nameMatch"></h2>
-                    <img src="" id="match-image" width="90%">
-                    <p id="primaryDetails" ></p>
-                    <h2 id="render-score">ds</h2>  
-                    <a href="match.html" id="linkOnCard"></a>  
-                                    
-                    
-                </div>
-            </div>
-        </div>
+        <h1 class="head-match">Sorry, couldnt find a match for you</h1>
         <script src="script.js"></script>
     </body>
+ 
+</html>

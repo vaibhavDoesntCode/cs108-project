@@ -117,6 +117,7 @@ function findMatch(user){
         maxScore = 0;
 
         while(index < nStudentJson){
+            console.log(user, student[index])
             score = scoreCalculator(user, student[index])
             if(score > maxScore){
                 indexMaxScore = index;
@@ -127,6 +128,7 @@ function findMatch(user){
         window.location.href = "foundMatch.html"
         var jsonString = JSON.stringify(student[indexMaxScore]);
         localStorage.setItem('matchedStudent', jsonString);
+        localStorage.setItem('maxScore',maxScore)
     })
     .catch(function(error) {
         console.error('Error fetching JSON:', error);
@@ -136,11 +138,14 @@ function findMatch(user){
 
 function renderMatchFound(){
     var storedJsonString = localStorage.getItem('matchedStudent');
+    let maxScore = localStorage.getItem('maxScore')
+    if(maxScore < 0.7) window.location.href = 'sorry.html'
     var matchedStudent = JSON.parse(storedJsonString);
     document.getElementById('nameMatch').innerHTML = matchedStudent.Name
     document.getElementById('primaryDetails').innerHTML =  matchedStudent.Name + " is " + matchedStudent.Age + " years old, Currently in " + matchedStudent["Year of Study"] + ' year.'
     document.getElementById('match-image').setAttribute('src', matchedStudent.Photo)
     document.getElementById('linkOnCard').innerHTML = "More about " + matchedStudent.Name
+    document.getElementById('render-score').innerHTML = maxScore
 
 
 }
@@ -179,19 +184,63 @@ function renderMatch(){
 
 function scoreCalculator(user1, user2){
     score = 0;
-    //iterate in interests
-    for(i = 0; i<user1.Hobbies.length; i+=1){
-        for(j=0; j<user2.Hobbies.length; j+=1 ){
-            if(user1.Hobbies[i] == user2.Hobbies[j]) score += 1;
+    //Implementing Jaccard's Algorithm
+    // Merge the arrays
+    const mergedArray = [...user1.Interests, ...user2.Interests];
+    // console.log(mergedArray)
+    
+    // Convert the merged array into a Set to remove duplicates
+    const unionSet = new Set(mergedArray);
+ //   console.log(unionSet)
+    
+    // Get the size of the union set
+    nUnion = unionSet.size;
+
+    const intersection = [];
+    
+    // Iterate over elements in user1.Interests
+    for (const element of user1.Interests) {
+        // Check if the element exists in array user2.Interests
+        if (user2.Interests.includes(element)) {
+            // If it exists, add it to the intersection array
+            intersection.push(element);
         }
     }
-    //iterate in interests
-    for(i = 0; i<user1.Interests.length; i+=1){
-        for(j=0; j<user2.Interests.length; j+=1 ){
-            if(user1.Interests[i] == user2.Interests[j]) score += 1.25;
+    nInt =  intersection.length;
+    console.log('Intersection', intersection)
+
+    const mergedArrayHobbies = [...user1.Hobbies, ...user2.Hobbies];
+  //  console.log(mergedArrayHobbies)
+    
+    // Convert the merged array into a Set to remove duplicates
+    const unionSetHobbies = new Set(mergedArrayHobbies);
+    console.log(unionSetHobbies)
+    
+    // Get the size of the union set
+    nUnion += unionSetHobbies.size;
+
+    const intersectionHobbies = [];
+    
+    // Iterate over elements in user1.Interests
+    for (const element of user1.Hobbies) {
+        // Check if the element exists in array user2.Interests
+        if (user2.Hobbies.includes(element)) {
+            // If it exists, add it to the intersection array
+            intersectionHobbies.push(element);
         }
     }
-    return score;
+  //  console.log(intersectionHobbies)
+    nInt +=  intersectionHobbies.length;
+    // console.log('Intersection', intersection)
+
+    // console.log(nInt, nUnion)
+
+    // console.log(unionArray);
+    //iterate in interests
+    score = nInt/nUnion
+ //   console.log('score', score)
+    console.log(Math.sqrt(score))
+    return Math.sqrt(score);
 }
 
 
@@ -425,9 +474,12 @@ function scroll(){
 
 
 function logoutFun(){
+    console.log("avcnks")
     localStorage.removeItem("matchedStudent");
     localStorage.removeItem("detailsFilled");
+    localStorage.removeItem("maxScore")
     
 }
+
 
 
