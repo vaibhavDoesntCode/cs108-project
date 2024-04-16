@@ -72,7 +72,7 @@ function submitHandler(){
         hobbies.push("scrolling")
     }
     if(document.getElementById('playMusic').checked){
-        hobbies.push("playMusic")
+        hobbies.push("Playing Music Instruments")
     }
     if(document.getElementById('Photography').checked){
         hobbies.push("Photography")
@@ -383,10 +383,35 @@ function checkSecretAnswer() {
 }
 
 
+function checkFilter(person, filter){
+    qualified = true
+    console.log(filter, "a")
+    for(i=0; i<filter.length; i+=1){
+        if(! person.Interests.includes(filter[i]) && ! person.Hobbies.includes(filter[i])) {
+            qualified = false
+            console.log(filter[i])
+            break;
+        }
+    }
+
+    return qualified;
+}
+
+function scroll_the_scroll_container(){
+
+}
+
+
+
 
 
 //function for scoll functionality
 function scroll(){
+    cont = document.getElementById('scroll-container')
+
+
+    var filters = JSON.parse(localStorage.getItem('filterData'))
+
 
     var storedJsonString = localStorage.getItem('matchedStudent');
     var matchedStudent = JSON.parse(storedJsonString);
@@ -399,8 +424,13 @@ function scroll(){
         console.log(nStudent)
         container = document.getElementById('scroll-container');
         for(let i = 0; i < nStudent  ; i++) {
-            //putting condition so that the user dont see the matched(not good enough) person again
-           
+            if (filters == null || filters == []) qualified =  true;
+            else{
+                qualified = checkFilter(student[i],filters )  
+            }
+
+            if(qualified){
+              
             let div = document.createElement('div');
             div.className = "box"; // Apply the class name to the div
 
@@ -447,8 +477,8 @@ function scroll(){
 
             // Append the div to the container
             container.appendChild(div);
+            }
 
-            console.log(student[i]);
             
         }
     })
@@ -478,9 +508,83 @@ function logoutFun(){
     localStorage.removeItem("matchedStudent");
     localStorage.removeItem("detailsFilled");
     localStorage.removeItem("maxScore")
+    localStorage.removeItem('filterData')
     
 }
 
+function openNav(){
+    document.getElementById("filterBar").style.height = "180px";
+    document.getElementById('filter-dropdown').setAttribute('onclick','closeNav()')
+    document.getElementById('dropdown-arrow').setAttribute('src','./assets/caret-arrow-up.png')
+    document.getElementById('dropdown-arrow').setAttribute('width','10px')
+    document.getElementById('filter-container').style.paddingBottom = "20px"
+
+}
+
+function closeNav() {
+    document.getElementById("filterBar").style.height = "0";
+    document.getElementById('filter-dropdown').setAttribute('onclick','openNav()')
+    document.getElementById('dropdown-arrow').setAttribute('src','./assets/down-arrow.png')
+    document.getElementById('dropdown-arrow').setAttribute('width','15px')
+    document.getElementById('filter-container').style.paddingBottom = "0px"
+  }
+
+function  FilterFunction(){
+
+    interestsHobbies = [ ]
+
+    if(document.getElementById('Traveling').checked){
+        interestsHobbies.push("Traveling")
+    }
+    if(document.getElementById('Sports').checked){
+        interestsHobbies.push("Sports")
+    }
+    if(document.getElementById('Movies').checked){
+        interestsHobbies.push("Movies")
+    }
+    if(document.getElementById('Music').checked){
+        interestsHobbies.push("Music")
+    }
+    if(document.getElementById('Literature').checked){
+        interestsHobbies.push("Literature")
+    }
+    if(document.getElementById('Fashion').checked){
+        interestsHobbies.push("Fashion")
+    }
+    if(document.getElementById('Art').checked){
+        interestsHobbies.push("Art")
+    }
+    if(document.getElementById('Technology').checked){
+        interestsHobbies.push("Technology")
+    }
+    // hobbies input
+    if(document.getElementById('Reading').checked){
+        interestsHobbies.push("Reading")
+    }
+    if(document.getElementById('Cooking').checked){
+        interestsHobbies.push("Cooking")
+    }
+    if(document.getElementById('Coding').checked){
+        interestsHobbies.push("Coding")
+    }
+    if(document.getElementById('Gardening').checked){
+        interestsHobbies.push("Gardening")
+    }
+    if(document.getElementById('Painting').checked){
+        interestsHobbies.push("Painting")
+    }
+    if(document.getElementById('scrolling').checked){
+        interestsHobbies.push("scrolling")
+    }
+    if(document.getElementById('playMusic').checked){
+        interestsHobbies.push("Playing Music Instruments")
+    }
+    if(document.getElementById('Photography').checked){
+        interestsHobbies.push("Photography")
+    }
 
 
-
+    localStorage.setItem('filterData', JSON.stringify(interestsHobbies))
+    window.location.href = 'scroll_or_swipe.html'
+}
+ 

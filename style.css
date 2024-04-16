@@ -213,7 +213,7 @@ nice pinkish pruple color for gradiet #98005B
     scroll-snap-type: x mandatory;
     color: black;
     font-family: Mukta;
-    margin-top: 3%;
+    margin-top: 0%;
     box-shadow: #1a0303 20px 20px 20px;
     transition: margin-top .5s;
     padding: 16px;
@@ -258,6 +258,75 @@ nice pinkish pruple color for gradiet #98005B
 .box img{
   border-radius:0 50% 50% 0;
 }
+
+
+/* css for filter */
+#filterBar{
+  height: 0;
+  width: 79%;
+  z-index: 1;
+  margin-top: 0%;
+  margin-left: 18%;
+  border-radius: 10px;
+background-color: #9c7da152;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-left: 15px;
+  text-align: center;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 10px;
+
+}
+
+.filter-questions{
+  display: flex;
+  margin-top: 20px;
+  
+
+  text-align: left;
+}
+
+.filter-questions p{
+  margin-bottom: 5px;
+  color: #f6acee;
+  font-weight: 600;
+}
+
+.filter-ques1, .filter-ques2 {
+  flex: 1; /* Equal width for both divs */
+  padding: 0 20px; /* Adjust padding as needed */
+}
+
+.filter-ques1 {
+  text-align: left;
+  margin-left: 90px; /* Align contents to the right */
+}
+
+.filter-ques2 {
+  text-align: left; /* Align contents to the left */
+}
+
+
+#filterBar input{
+  margin-left: 15px;
+}
+
+#filterBar .closebtn {
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#filterBar::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-container{
+  background-color: #2e0b47e8;
+  color: white;
+}
+
 
 
 
