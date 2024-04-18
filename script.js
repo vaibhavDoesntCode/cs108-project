@@ -482,20 +482,26 @@ function scroll(){
         return response.json();
     })
     .then(function(student) {
+        
         let nStudent = student.length;
-     
         container = document.getElementById('scroll-container');
         for(let i = 0; i < nStudent  ; i++) {
-            if (filters == null || filters == []) qualified =  true;
+        
+            if (filters == null || filters == []) {
+        
+                qualified =  true;
+                document.getElementById('removeFilters').style.display = "none"
+            }
             else{
+        
                 qualified = checkFilter(student[i],filters )  
             }
-
+        
             if(CGender.includes(student[i].Gender)){
-
+        
             if(qualified){
             counter =+ 1;
-              
+        
             let div = document.createElement('div');
             div.className = "box"; // Apply the class name to the div
       
@@ -553,7 +559,7 @@ function scroll(){
         if(boxArray.length == 1){
         boxArray[boxArray.length-1].setAttribute('style', "margin-left: 0%;")
         }
-        else{
+        else if(boxArray.length > 1){
             boxArray[boxArray.length-1].setAttribute('style', "margin-right: 20%;")
         }
         if(counter == 0){
@@ -562,6 +568,14 @@ function scroll(){
     }
 )
 }
+
+function removeFilters(){
+    console.log('toto')
+    localStorage.removeItem('filterData')
+    // console.log(localStorage.getItem('filterData'))
+     window.location.href = 'scroll_or_swipe.html'
+}
+
 
 // function loginPageSlideShow() {
 //     // Define a function to change the images
@@ -663,7 +677,7 @@ function  FilterFunction(){
         interestsHobbies.push("Photography")
     }
 
-
+    document.getElementById('removeFilters').style.display = 'block'
     localStorage.setItem('filterData', JSON.stringify(interestsHobbies))
     window.location.href = 'scroll_or_swipe.html'
 }

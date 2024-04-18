@@ -206,7 +206,7 @@ nice pinkish pruple color for gradiet #98005B
 }
 
 
-/*code for scroll*/
+/*code for scroll.html*/
 
 
   .scroll-container {
@@ -333,6 +333,15 @@ background-color: #9c7da152;
   color: white;
 }
 
+#removeFilters{
+  font-size: 19px;
+  color: grey;
+  cursor: pointer;
+}
+
+#removeFilters:hover{
+  text-decoration: underline;
+}
 
 
 

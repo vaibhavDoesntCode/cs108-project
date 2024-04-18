@@ -15,8 +15,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cedarville+Cursive&family=Mukta:wght@200;300;400;500;600;700;800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
     </head>
-    <body onload="scroll()" style="background-color: #410d65; background-image: url(./assets/swipebg.jpg);
-                                   overflow-x: hidden;" onkeydown="scroll_the_scroll_container(event)"  >
+    <body style="background-color: #410d65; background-image: url(./assets/swipebg.jpg);
+                                   overflow-x: hidden;"  >
         <nav>
             <ul class="navbar">
                 <img src="./assets/logo.png" alt="logo" class="nav-logo">
@@ -41,6 +41,64 @@
                 <li><a href="/login.html" onclick="logoutFun()">Log out</a></li>
               </ul>
         </nav>
+        <div class="filter-container" id="filter-container">
+            <span style="font-size:30px;
+            cursor:pointer;
+            margin-left: 16%;
+            font-size: 23px;" onclick="openNav()" id="filter-dropdown"><img src="./assets/filter (1).png" alt="" width="16px" > <i>Filter</i> <img src="./assets/down-arrow.png" alt="" width="15px" id="dropdown-arrow">  </span>
+            <span id="removeFilters"><a onclick="removeFilters()"><i>Remove Filters</i></a></span>
+            
+            <div id="filterBar">
+                <div class="filter-questions">
+                <div class="filter-ques1">
+                <p>What interests do you really want in your partner?</p>
+                <input type="checkbox" id="Traveling" name="Traveling" value="Traveling" >
+                <label for="Traveling">Traveling</label>
+                <input type="checkbox" id="Sports" name="Sports" value="Sports">
+                <label for="Sports">Sports</label>
+                <input type="checkbox" id="Technology" name="Technology" value="Technology">
+                <label for="Technology">Technology</label>
+    
+                <input type="checkbox" id="Music" name="Music" value="Music">
+                <label for="Music">Music</label><br>
+                <input type="checkbox" id="Literature" name="Literature" value="Literature">
+                <label for="Literature">Literature</label>
+                <input type="checkbox" id="Movies" name="Movies" value="Movies">
+                <label for="Movies">Movies</label>
+                <input type="checkbox" id="Fashion" name="Fashion" value="Fashion">
+                <label for="Fashion">Fashion</label>
+                <input type="checkbox" id="Art" name="Art" value="Art">
+                <label for="Art">Art</label>
+                </div>
+                <div class="filter-ques2">
+                <p>What hobbies your partner must have?</p>
+                <input type="checkbox" id="Reading" name="Reading" value="Reading">
+                <label for="Reading">Reading</label>
+                <input type="checkbox" id="Cooking" name="Cooking" value="Cooking">
+                <label for="Cooking">Cooking</label>
+                <input type="checkbox" id="Coding" name="Coding" value="Coding">
+                <label for="Coding">Coding</label>
+                <input type="checkbox" id="Gardening" name="Gardening" value="Gardening">
+                <label for="Gardening">Gardening</label><br>
+                <input type="checkbox" id="Painting" name="Painting" value="Painting">
+                <label for="Painting">Painting</label>
+                <input type="checkbox" id="scrolling" name="scrolling" value="scrolling">
+                <label for="scrolling">Watching YouTube/Instagram</label><br>
+                <input type="checkbox" id="playMusic" name="playMusic" value="playMusic">
+                <label for="playMusic">Playing musical instruments</label>
+                <input type="checkbox" id="Photography" name="Photography" value="Photography">
+                <label for="Photography">Photography</label><br>
+                </div>
+            </div>
+                <button type="button" onclick="FilterFunction()" class="dating-submit" style="  
+                                                                                                width: 100px;
+                                                                                                margin: 0 0 10px 0;" >Filter</button>
+                
+    
+            </div>
+            </div>
+    
         <h1 class="head-match"> Sorry, we couldnt find anyone that match your interests... </h1>
-</body>
+        <script src="script.js"></script>
+    </body>
 </html>
