@@ -3,7 +3,7 @@
 
 function submitHandler(){
     //function for dating.html... takes the user input and store in variables, forms a json, calls findMatch() functio
-    n
+    
     //roll no input
     rollNo = document.getElementById('rollNumber').value
     //name input
@@ -121,7 +121,7 @@ function submitHandler(){
         "Year of Study": year,
         "Age": age,
         "Gender": gender,
-        //"Choice of Gender": choiceGender, 
+        "Choice of Gender": choiceGender, 
         "Interests": interests,
         "Hobbies": hobbies,
         "Email": email,
@@ -154,92 +154,101 @@ function findMatch(user){
         indexMaxScore = 0;
         maxScore = 0;
         
-
+        //iterating through the object
         while(index < nStudentJson){
-            // consle.log(user, student[index])
             score = scoreCalculator(user, student[index])
-            
-             console.log(user["Choice of Gender"], student[index]["Gender"],user["Choice of Gender"].includes(student[index].Gender))
+            //1st condition: If the student in the json file is of gender that the user prefers  
             if(user["Choice of Gender"].includes(student[index].Gender)){
-            if(score > maxScore){
-                indexMaxScore = index;
-                maxScore = score;
-                console.log('ss',student[index])
-            }}
+                if(score > maxScore){
+                    indexMaxScore = index;
+                    maxScore = score;
+                }
+            }
             index += 1;
         }
+        //with this... on simply clicking on submit button on dating.html... foundMAtch.html will open and renderMatchFound() will be triggered
         window.location.href = "foundMatch.html"
+
+        //js objects cant be stored in the localstorage directly, converting them to strings
         var jsonString = JSON.stringify(student[indexMaxScore]);
         localStorage.setItem('matchedStudent', jsonString);
         localStorage.setItem('maxScore',maxScore)
-        // console.log(student[indexMaxScore],maxScore)
     })
     .catch(function(error) {
-        console.error('Error fetching JSON:', error);
+        //in case of any error fethcing the json file
+        console.error('Error fetching student.json:', error);
     });
 }
 
 
 function renderMatchFound(){
+    //this function is to render the match on the matchFound.html
+
+    //accessing items from the localstorage
     var storedJsonString = localStorage.getItem('matchedStudent');
-    let maxScore = localStorage.getItem('maxScore')
-    // consle.log(maxScore, matchedStudent)
-    if(maxScore < 0.4) window.location.href = 'sorry.html'
+    //coverting the stored string into javascript object
     var matchedStudent = JSON.parse(storedJsonString);
+    let maxScore = localStorage.getItem('maxScore')
+    
+    //if the highest score of compatablity of the user among any student < 0.4, it willl display no match found
+    if(maxScore < 0.4) window.location.href = 'sorry.html'
+    //filling in the details
     document.getElementById('nameMatch').innerHTML = matchedStudent.Name
     document.getElementById('primaryDetails').innerHTML =  matchedStudent.Name + " is " + matchedStudent.Age + " years old, Currently in " + matchedStudent["Year of Study"] + ' year.'
     document.getElementById('match-image').setAttribute('src', matchedStudent.Photo)
     document.getElementById('linkOnCard').innerHTML = "More about " + matchedStudent.Name
-    document.getElementById('render-score').innerHTML = maxScore
-
-
+    document.getElementById('render-score').innerHTML = maxScore + "%"
 }
 
 
 
 function renderMatch(){
+    //this function is to render the details of the matched student on the match.html page... basically function renderMatchFound() but in detail
+
+    //getting data from the local storage
     var storedJsonString = localStorage.getItem('matchedStudent');
+    //converting string into a readable js object
     var matchedStudent = JSON.parse(storedJsonString);
-//    consle.log(matchedStudent)
-   document.getElementById('nameMatch').innerHTML = matchedStudent.Name
-   document.getElementById('primaryDetails').innerHTML = matchedStudent.Age + ' ' + matchedStudent["Year of Study"] + ' year ' + matchedStudent["IITB Roll Number"]
-   var hobbiesRender = ""
-   for(i = 0; i<matchedStudent.Hobbies.length-1; i += 1){
-    hobbiesRender += matchedStudent.Hobbies[i] + ', '
-   }
-   hobbiesRender += matchedStudent.Hobbies[matchedStudent.Hobbies.length-1]
-   document.getElementById('hobbiesMatch').innerHTML = hobbiesRender
+    //setting the name and details like iitb roll number, gender and age etc.
+    document.getElementById('nameMatch').innerHTML = matchedStudent.Name
+    document.getElementById('primaryDetails').innerHTML = matchedStudent.Age + ' ' + matchedStudent["Year of Study"] + ' year ' + matchedStudent["IITB Roll Number"]
 
-   var interestsRender = ""
-   for(i = 0; i<matchedStudent.Interests.length-1; i += 1){
-    interestsRender += matchedStudent.Interests[i] + ', '
-   }
-   interestsRender += matchedStudent.Interests[matchedStudent.Interests.length-1]
-   document.getElementById('interestsMatch').innerHTML = interestsRender
+    //setting hobbies
+    var hobbiesRender = ""
+    for(i = 0; i<matchedStudent.Hobbies.length-1; i += 1){
+        hobbiesRender += matchedStudent.Hobbies[i] + ', '
+    }
+    hobbiesRender += matchedStudent.Hobbies[matchedStudent.Hobbies.length-1]
+    document.getElementById('hobbiesMatch').innerHTML = hobbiesRender
 
-   document.getElementById('match-image').setAttribute('src', matchedStudent.Photo)
+    //setting interests
+    var interestsRender = ""
+    for(i = 0; i<matchedStudent.Interests.length-1; i += 1){
+        interestsRender += matchedStudent.Interests[i] + ', '
+    }
+    interestsRender += matchedStudent.Interests[matchedStudent.Interests.length-1]
+    document.getElementById('interestsMatch').innerHTML = interestsRender
 
-
+    //setting image by changing src
+    document.getElementById('match-image').setAttribute('src', matchedStudent.Photo)
 }
 
 
-
-
-
-
 function scoreCalculator(user1, user2){
+    //this function is to calculate the compatablity score between 2 users
+
     score = 0;
     //Implementing Jaccard's Algorithm
-    // Merge the arrays
+    //Merging the arrays
     const mergedArray = [...user1.Interests, ...user2.Interests];
  
-    
-    // Convert the merged array into a Set to remove duplicates
+    // Converting the merged array into a Set to remove duplicates
     const unionSet = new Set(mergedArray);
 
-    // Get the size of the union set
+    //  the size of the union set
     nUnion = unionSet.size;
 
+    // Getting the intersection between the interests of the 2 users
     const intersection = [];
     
     // Iterate over elements in user1.Interests
@@ -250,24 +259,25 @@ function scoreCalculator(user1, user2){
             intersection.push(element);
         }
     }
+    //length of the intersection
     nInt =  intersection.length;
-    // consle.log('Intersection', intersection)
 
+    //doing the same ith hobbies
+    //getting the merged array
     const mergedArrayHobbies = [...user1.Hobbies, ...user2.Hobbies];
   
     
     // Convert the merged array into a Set to remove duplicates
     const unionSetHobbies = new Set(mergedArrayHobbies);
-    // consle.log(unionSetHobbies)
     
     // Get the size of the union set
     nUnion += unionSetHobbies.size;
 
     const intersectionHobbies = [];
     
-    // Iterate over elements in user1.Interests
+    // Iterate over elements in user1.hobbies
     for (const element of user1.Hobbies) {
-        // Check if the element exists in array user2.Interests
+        // Check if the element exists in array user2.hobbies
         if (user2.Hobbies.includes(element)) {
             // If it exists, add it to the intersection array
             intersectionHobbies.push(element);
@@ -276,47 +286,49 @@ function scoreCalculator(user1, user2){
 
     nInt +=  intersectionHobbies.length;
 
-    //iterate in interests
     score = nInt/nUnion
-
- 
-    return Math.sqrt(score);
+    console.log(100*(Math.sqrt(score)).toFixed(2))
+    //to scale the score,reduce the number if decimal points to 2 and to covert he decimal score into percentage
+    return 100*(Math.sqrt(score)).toFixed(2);
+    
 }
 
 
 
-
-
-
-
 function onLogin(){
+    //this function gets triggered when login button is clicked
+
+    //fetching the login file
     fetch('./json_files/login.json')
     .then(function(response) {
-    return response.json();
+        //coverting into json object
+        return response.json();
     })
     .then(function(data) {
+        //verifying the password
         checkLoginData(data);
     });
 }
 
 
-
-
-
-
-
 function checkLoginData(data){
+    //this function verifies the user and if the user is not verrified it displays the appropriate error message
+
+    //collecting the value input by user
     inp_username = document.getElementById('username').value;
     inp_password = document.getElementById('password').value;
     error_message = document.getElementById('error_message')
     n = data.length
     index = 0
+
+    //getting the index of the the username put by user
     while(index < n){
         if(data[index].username == inp_username) {
             break;
         }
         index += 1;
     }
+    //displaying error message for invalid username
     if(index == n){
         error_message.innerHTML = "No such username found"
         error_message.style.border = "1px solid #ff0000"
@@ -324,6 +336,7 @@ function checkLoginData(data){
         return;
     }
     
+    // displaying error messge for wrong password
     if(data[index].password != inp_password){
         error_message.innerHTML = "Wrong password"
         error_message.style.padding = "5px 7px"
@@ -331,33 +344,40 @@ function checkLoginData(data){
         return
     }
 
+    //if everything is right... this function will lead the user to the dating.html
     window.location.href = "dating.html"
     
 }
 
-
-
-
 //function for forgot.html
 function findSecret(){
+    //this function first ask for the username then ask them their secret question and then check the answer 
+
+    // getting the username entered
     var usernameForgot = document.getElementById('forgot-username').value;
     var secretQuestion = document.getElementById('secretQuestion');
     var errorMessageForgot = document.getElementById('error_message_forgot');
+    // fetching the login.json file
     fetch('./json_files/login.json')
     .then(function(response) {
+        // converting the json file into javascript object
         return response.json();
     })
     .then(function(people) {
-        // consle.log(people.length)
+        // people is the array of js objects represent each username
         let n = people.length
         let index = -1
+
+        //getting the index of the username entered by the user
         for(i=0; i<n; i+=1){
             if(people[i].username == usernameForgot) {
                 index = i;
                 break;
             }
         }
+        // displaying the error if no username matches the database
         if(index == -1){
+            // display is initially none and then set to block
             errorMessageForgot.style.display = "block"
             errorMessageForgot.innerHTML = "No such username exists"
             errorMessageForgot.style.padding = "5px 7px"
@@ -370,6 +390,7 @@ function findSecret(){
             secretQuestion.style.display = "none"
         }
         else{
+            //if we get the index this means the user is found.. now we display his/her secret question
             secretQuestion.innerHTML = people[index].secret_question;
             secretQuestion.style.display = "block"
             document.getElementById('secretAnswer').style.display = "block"
@@ -384,6 +405,7 @@ function findSecret(){
 
 //function to check the answer
 function checkSecretAnswer() {
+
     var enteredAnswer = document.getElementById('secretAnswer').value;
     var username = document.getElementById('forgot-username').value;
     var errorMessageForgot = document.getElementById('error_message_forgot');
@@ -442,7 +464,7 @@ function checkFilter(person, filter){
 
 
 
-//function for scoll functionality
+//function for scroll functionality
 function scroll(){
 
     cont = document.getElementById('scroll-container')
