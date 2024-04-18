@@ -2,3 +2,5 @@
 2. COMMENTS
 3. Understand all transition stuff
 4. if get no match page
+5. understand how am i displaying image
+6. comments in the taking image as input part

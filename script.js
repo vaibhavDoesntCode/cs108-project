@@ -2,6 +2,8 @@
 
 
 function submitHandler(){
+    //function for dating.html... takes the user input and store in variables, forms a json, calls findMatch() functio
+    n
     //roll no input
     rollNo = document.getElementById('rollNumber').value
     //name input
@@ -14,6 +16,7 @@ function submitHandler(){
     male = document.getElementById('Male')
     female = document.getElementById('Female')
     other_gender = document.getElementById('Other')
+    //setting default to no_input, but as said... inputs provided will be non-empty
     var gender = "no_input";
     if (male.checked){
         gender = "Male"
@@ -23,6 +26,18 @@ function submitHandler(){
     }
     else if (other_gender.checked){
         gender = "Other"
+    }
+
+    //taking the input of genders in which the user is interested in 
+    var choiceGender = []
+    if(document.getElementById('CMale').checked){
+        choiceGender.push("Male")
+    }
+    if(document.getElementById('CFemale').checked){
+        choiceGender.push("Female")
+    }
+    if(document.getElementById('COther').checked){
+        choiceGender.push("Other")
     }
     
     //interest input
@@ -51,6 +66,7 @@ function submitHandler(){
     if(document.getElementById('Technology').checked){
         interests.push("Technology")
     }
+
     // hobbies input
     var hobbies = []
     if(document.getElementById('Reading').checked){
@@ -82,21 +98,39 @@ function submitHandler(){
     email = document.getElementById('email').value
 
     //image input
-    pfp = document.getElementById('pfp').value
+    // taking the file as input normally by ".value" doesnt work because the browser converts the path of that image into C://fakepath//{image name}...
 
+    const selectedFile = document.getElementById('pfp').files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(selectedFile);
+    var base64EncodedData;
+    reader.onload = function(event) {
+        const base64EncodedData = event.target.result;
+        console.log(base64EncodedData);
+      
+        // Store data in local storage after it's available
+        localStorage.setItem('pfp', base64EncodedData);
+      };
+
+    console.log(pfp)
+
+    // converting the data input3 by the user into object
     user_data = {
         "IITB Roll Number": rollNo,
         "Name": name_user,
         "Year of Study": year,
         "Age": age,
         "Gender": gender,
+        //"Choice of Gender": choiceGender, 
         "Interests": interests,
         "Hobbies": hobbies,
         "Email": email,
-        "Photo": pfp
     }
 
+    //setting items in the local storage
     localStorage.setItem('detailsFilled', true)
+    localStorage.setItem('CGender', JSON.stringify(choiceGender))
+    localStorage.setItem('user_details', JSON.stringify(user_data) )
     
     findMatch(user_data);
 }
@@ -106,29 +140,39 @@ function submitHandler(){
 
 
 function findMatch(user){
+
+    //fetching the student.json file
     fetch('./json_files/students.json')
     .then(function(response) {
+        //coverting the response into js object
         return response.json();
     })
     .then(function(student) {
+        //student is the name of that js object
         nStudentJson = student.length
         index = 0;
         indexMaxScore = 0;
         maxScore = 0;
+        
 
         while(index < nStudentJson){
-            console.log(user, student[index])
+            // consle.log(user, student[index])
             score = scoreCalculator(user, student[index])
+            
+             console.log(user["Choice of Gender"], student[index]["Gender"],user["Choice of Gender"].includes(student[index].Gender))
+            if(user["Choice of Gender"].includes(student[index].Gender)){
             if(score > maxScore){
                 indexMaxScore = index;
                 maxScore = score;
-            }
+                console.log('ss',student[index])
+            }}
             index += 1;
         }
         window.location.href = "foundMatch.html"
         var jsonString = JSON.stringify(student[indexMaxScore]);
         localStorage.setItem('matchedStudent', jsonString);
         localStorage.setItem('maxScore',maxScore)
+        // console.log(student[indexMaxScore],maxScore)
     })
     .catch(function(error) {
         console.error('Error fetching JSON:', error);
@@ -139,7 +183,8 @@ function findMatch(user){
 function renderMatchFound(){
     var storedJsonString = localStorage.getItem('matchedStudent');
     let maxScore = localStorage.getItem('maxScore')
-    if(maxScore < 0.7) window.location.href = 'sorry.html'
+    // consle.log(maxScore, matchedStudent)
+    if(maxScore < 0.4) window.location.href = 'sorry.html'
     var matchedStudent = JSON.parse(storedJsonString);
     document.getElementById('nameMatch').innerHTML = matchedStudent.Name
     document.getElementById('primaryDetails').innerHTML =  matchedStudent.Name + " is " + matchedStudent.Age + " years old, Currently in " + matchedStudent["Year of Study"] + ' year.'
@@ -155,7 +200,7 @@ function renderMatchFound(){
 function renderMatch(){
     var storedJsonString = localStorage.getItem('matchedStudent');
     var matchedStudent = JSON.parse(storedJsonString);
-   console.log(matchedStudent)
+//    consle.log(matchedStudent)
    document.getElementById('nameMatch').innerHTML = matchedStudent.Name
    document.getElementById('primaryDetails').innerHTML = matchedStudent.Age + ' ' + matchedStudent["Year of Study"] + ' year ' + matchedStudent["IITB Roll Number"]
    var hobbiesRender = ""
@@ -187,12 +232,11 @@ function scoreCalculator(user1, user2){
     //Implementing Jaccard's Algorithm
     // Merge the arrays
     const mergedArray = [...user1.Interests, ...user2.Interests];
-    // console.log(mergedArray)
+ 
     
     // Convert the merged array into a Set to remove duplicates
     const unionSet = new Set(mergedArray);
- //   console.log(unionSet)
-    
+
     // Get the size of the union set
     nUnion = unionSet.size;
 
@@ -207,14 +251,14 @@ function scoreCalculator(user1, user2){
         }
     }
     nInt =  intersection.length;
-    console.log('Intersection', intersection)
+    // consle.log('Intersection', intersection)
 
     const mergedArrayHobbies = [...user1.Hobbies, ...user2.Hobbies];
-  //  console.log(mergedArrayHobbies)
+  
     
     // Convert the merged array into a Set to remove duplicates
     const unionSetHobbies = new Set(mergedArrayHobbies);
-    console.log(unionSetHobbies)
+    // consle.log(unionSetHobbies)
     
     // Get the size of the union set
     nUnion += unionSetHobbies.size;
@@ -229,17 +273,13 @@ function scoreCalculator(user1, user2){
             intersectionHobbies.push(element);
         }
     }
-  //  console.log(intersectionHobbies)
+
     nInt +=  intersectionHobbies.length;
-    // console.log('Intersection', intersection)
 
-    // console.log(nInt, nUnion)
-
-    // console.log(unionArray);
     //iterate in interests
     score = nInt/nUnion
- //   console.log('score', score)
-    console.log(Math.sqrt(score))
+
+ 
     return Math.sqrt(score);
 }
 
@@ -308,7 +348,7 @@ function findSecret(){
         return response.json();
     })
     .then(function(people) {
-        console.log(people.length)
+        // consle.log(people.length)
         let n = people.length
         let index = -1
         for(i=0; i<n; i+=1){
@@ -385,11 +425,11 @@ function checkSecretAnswer() {
 
 function checkFilter(person, filter){
     qualified = true
-    console.log(filter, "a")
+
     for(i=0; i<filter.length; i+=1){
         if(! person.Interests.includes(filter[i]) && ! person.Hobbies.includes(filter[i])) {
             qualified = false
-            console.log(filter[i])
+            // consle.log(filter[i])
             break;
         }
     }
@@ -397,9 +437,6 @@ function checkFilter(person, filter){
     return qualified;
 }
 
-function scroll_the_scroll_container(){
-
-}
 
 
 
@@ -407,21 +444,24 @@ function scroll_the_scroll_container(){
 
 //function for scoll functionality
 function scroll(){
+
     cont = document.getElementById('scroll-container')
+    CGender = JSON.parse(localStorage.getItem('CGender'));
+    var counter = 0;
 
 
     var filters = JSON.parse(localStorage.getItem('filterData'))
 
 
-    var storedJsonString = localStorage.getItem('matchedStudent');
-    var matchedStudent = JSON.parse(storedJsonString);
+   
+
     fetch('./json_files/students.json')
     .then(function(response) {
         return response.json();
     })
     .then(function(student) {
         let nStudent = student.length;
-        console.log(nStudent)
+     
         container = document.getElementById('scroll-container');
         for(let i = 0; i < nStudent  ; i++) {
             if (filters == null || filters == []) qualified =  true;
@@ -429,10 +469,14 @@ function scroll(){
                 qualified = checkFilter(student[i],filters )  
             }
 
+            if(CGender.includes(student[i].Gender)){
+
             if(qualified){
+            counter =+ 1;
               
             let div = document.createElement('div');
             div.className = "box"; // Apply the class name to the div
+      
 
             //create a container for the student name
             let smallerContainer = document.createElement('div');
@@ -473,15 +517,28 @@ function scroll(){
             smallerContainer.appendChild(UltrasmallerContainer)
             div.appendChild(smallerContainer);
             
+            
            
 
             // Append the div to the container
             container.appendChild(div);
-            }
+            }}
 
             
         }
-    })
+
+        boxArray = document.getElementsByClassName('box')
+        if(boxArray.length == 1){
+        boxArray[boxArray.length-1].setAttribute('style', "margin-left: 0%;")
+        }
+        else{
+            boxArray[boxArray.length-1].setAttribute('style', "margin-right: 20%;")
+        }
+        if(counter == 0){
+            window.location.href = "scroll_not_found.html"
+        }
+    }
+)
 }
 
 // function loginPageSlideShow() {
@@ -504,11 +561,12 @@ function scroll(){
 
 
 function logoutFun(){
-    console.log("avcnks")
+
     localStorage.removeItem("matchedStudent");
     localStorage.removeItem("detailsFilled");
     localStorage.removeItem("maxScore")
     localStorage.removeItem('filterData')
+    localStorage.removeItem('CGender')
     
 }
 
@@ -587,4 +645,21 @@ function  FilterFunction(){
     localStorage.setItem('filterData', JSON.stringify(interestsHobbies))
     window.location.href = 'scroll_or_swipe.html'
 }
+
+function renderOwnDetails() {
+    var user = JSON.parse(localStorage.getItem('user_details'));
+    console.log(user)
+    pic = localStorage.getItem('pfp')
+    console.log(pic)
+    CGender = JSON.parse(localStorage.getItem('CGender'));
+    console.log(CGender)
+    document.getElementById('own-name').innerHTML = user.Name;
+    document.getElementById('own-interests').innerHTML = "Interests include " +user.Interests.join(', ');
+    document.getElementById('own-hobbies').innerHTML = user.Hobbies.join(', ') + " " + (user.Hobbies.length > 1 ? "are the hobbies." : "is an hobby.");
  
+ 
+    document.getElementById('own-details').innerHTML = user.Age + ', ' + user.Gender + '<br>Looking for ' + (CGender.length == 1 ? CGender[0] : (CGender.length == 2) ? CGender[0] + ' and ' + CGender[1] : CGender[0] + ', ' + CGender[1] + ' and ' + CGender[2] ) ;
+
+    document.getElementById('own-image').setAttribute('src', pic);
+
+}

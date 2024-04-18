@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Finder</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+                        <!-- google fonts imported from https://fonts.google.com/ -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Mukta:wght@200;300;400;500;600;700;800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cedarville+Cursive&family=Mukta:wght@200;300;400;500;600;700;800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cedarville+Cursive&family=Mukta:wght@200;300;400;500;600;700;800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    </head>
+    <body onload="renderOwnDetails()" style="background-color: #21063485;" onkeydown="scroll_the_scroll_container(event)"  >
+        <nav>
+            <ul class="navbar">
+                <img src="./assets/logo.png" alt="logo" class="nav-logo">
+                <span class="title-nav">Finder</span>
+                <li><a class="active" onclick="detailsFilled = localStorage.getItem('detailsFilled')
+                    if(detailsFilled){
+                        window.location.href='ownProfile.html'
+                    }
+                    else{
+                        window.location.href='dating.html'
+                    }
+                    ">Home</a></li>
+                <li><a onclick="detailsFilled = localStorage.getItem('detailsFilled')
+                    if(detailsFilled){
+                        window.location.href = 'foundMatch.html'
+                    }
+                    else{
+                        window.location.href = 'detailsNotFilled.html'
+                    }" >Your Match!</a></li>
+                <li><a  href="/scroll_or_swipe.html">Find new people!!</a></li>
+                <li><a href="/about.html">About Us</a></li>
+                <li><a href="/login.html" onclick="logoutFun()">Log out</a></li>
+              </ul>
+             
+        </nav>
+        <div class="container-div-own">
+            <div class="mini-nav">
+                <div class="mini-nav-left">
+                    <img src="./assets/logo.png" height="30px" alt="" srcset=""> 
+                    <p class="title-mini-nav">Your Profile</p>
+                </div>
+                <div class="mini-nav-right"><a href="dating.html" style=" color: rgb(208, 208, 208);">Edit Profile</a></div>
+            </div>
+            <div class="actual-details">
+                <div class="text-details">
+                    <h1 id="own-name"></h1>
+                    <h4 id="own-details"></h4>
+                    <h3 id="own-interests"></h3>
+                    <h3 id="own-hobbies"></h3>
+
+
+                </div>
+                <img id="own-image" src="" width="300px" height="350px" ></img>
+
+            </div>
+        </div>
+          <script src="script.js"></script>
+    </body>
+</html>

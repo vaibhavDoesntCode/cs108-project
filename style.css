@@ -1,6 +1,12 @@
 /*Login.html css*/
 
 /* to remove default margin and padding values*/
+@font-face {
+  font-family: cascadiaCode;
+  src: url(./assets/Cascadia.ttf);
+}
+
+
 *{
   margin: 0;
   padding: 0;
@@ -613,6 +619,69 @@ color: #1a0303;
   
 }
 
+
+
+/* ownProfile css */
+.mini-nav{
+  box-sizing: border-box;
+  width: 610px;
+  height: 60px;
+  background-color: #210634;
+  margin: auto;
+  margin-top: 80px;
+  padding: 15px 10px 15px 15px;
+  display: flex;
+
+}
+
+.title-mini-nav{
+  color: rgb(208, 208, 208);
+  font-family: cascadiaCode;
+  font-size: 15px;
+}
+.mini-nav-left{
+  display: flex;
+  flex: 1;
+  text-align: left;
+}
+.mini-nav-left p{
+  padding-top: 5px;
+  padding-left: 5px;
+}
+
+.mini-nav-right{
+  color: white;
+  flex: 1;
+  text-align: right;
+  font-family: cascadiaCode;
+  font-size: 15px;
+  color: rgb(208, 208, 208);
+  text-decoration: none;
+}
+
+
+
+
+.actual-details{
+  box-sizing: border-box;
+  box-shadow: rgba(0, 0, 0, 0.552) 20px 20px 20px 20px;
+  display: flex;
+  width: 610px;
+  background-color: white;
+  margin: auto;
+
+ 
+}
+.text-details{
+  display: block;
+  width: 300px;
+  padding: 40px 20px;
+}
+
+#own-name{
+  font-size: 40px;
+  font-weight: 400;
+}
 
 
 
