@@ -223,6 +223,7 @@ nice pinkish pruple color for gradiet #98005B
     box-shadow: #1a0303 20px 20px 20px;
     transition: margin-top .5s;
     padding: 16px;
+    scroll-behavior: smooth
   }
 
 

@@ -699,3 +699,14 @@ function renderOwnDetails() {
     document.getElementById('own-image').setAttribute('src', pic);
 
 }
+
+function scroll_the_scroll_container(e){
+    
+    if(e.code == 'ArrowRight'){
+        document.getElementById('scroll-container').scrollBy(1650,0);
+    }
+    else if(e.code == 'ArrowLeft'){
+        document.getElementById('scroll-container').scrollBy(-1650,0);
+    }
+    //alert("pageXOffset: " + window.scrollX + ", scrollY: " + window.scrollY);
+}

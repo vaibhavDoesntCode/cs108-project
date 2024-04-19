@@ -4,3 +4,4 @@
 4. if get no match page
 5. understand how am i displaying image
 6. comments in the taking image as input part
+7. understand the scroll snap or whatever that is on scroll_or_swipe
