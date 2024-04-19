@@ -5,3 +5,14 @@
 5. understand how am i displaying image
 6. comments in the taking image as input part
 7. understand the scroll snap or whatever that is on scroll_or_swipe
+
+
+  scroll-container                      box
+  ______|__________...                   |
+ |    |    |    |  ...            smaller-container   
+box box   box  box ...                ___|___ 
+                                     |       |   
+                                  profile  ultra-smaller-
+                                    img      container
+                                                 |
+                                        rest of the details

@@ -405,6 +405,7 @@ function findSecret(){
 
 //function to check the answer
 function checkSecretAnswer() {
+    
 
     var enteredAnswer = document.getElementById('secretAnswer').value;
     var username = document.getElementById('forgot-username').value;
@@ -413,6 +414,7 @@ function checkSecretAnswer() {
     
     fetch('./json_files/login.json')
     .then(function(response) {
+        // fetching the json file and coverting it to js object
         return response.json();
     })
     .then(function(people) {
@@ -423,35 +425,40 @@ function checkSecretAnswer() {
         //if user returns undefined that means that no username matches that value. this only means that site user might have changed value after putting the correct username
         if(user == undefined){
             errorMessageForgot.style.display = "block"
-            errorMessageForgot.innerHTML = "Username does not exist, please dont do bakchodi"
+            errorMessageForgot.innerHTML = "Username does not exist, please enter the correct username"
             errorMessageForgot.style.padding = "5px 7px"
             errorMessageForgot.style.border = "1px solid #ff0000"
             return
         }
         
+        // if user exists
         if (user) {
+            // converting the answer to lowercase so that capital letters doesnot matter as the secret answer is not something that is case sensitive
             if (enteredAnswer.toLowerCase() === user.secret_answer.toLowerCase() ) {
+                // if verified... n=move to the next page
                 window.location.href = "dating.html"
             } else {
+                // case when the answer is wrong
                 errorMessageForgot.style.display = "block"
                 errorMessageForgot.innerHTML = "Incorrect answer. Please try again.";
                 errorMessageForgot.style.padding = "5px 7px"
                 errorMessageForgot.style.border = "1px solid #ff0000"
             }
-        } else {
-            alert("No such username exists.");
-        }
+        } 
     });
 }
 
-
+// function for the scroll_or_swipe.html page
 function checkFilter(person, filter){
+    // function gets called when someone applies filter
+    // takes filter and person as input and returns if the person is passes the filter
+
     qualified = true
 
     for(i=0; i<filter.length; i+=1){
+        // there can be multiple filters, so cheking each of them
         if(! person.Interests.includes(filter[i]) && ! person.Hobbies.includes(filter[i])) {
             qualified = false
-            // consle.log(filter[i])
             break;
         }
     }
@@ -461,21 +468,16 @@ function checkFilter(person, filter){
 
 
 
-
-
-
 //function for scroll functionality
 function scroll(){
+    // to render everyoone (who match the filters) in the scroll-container
+    // function will be called when scroll_or_swipe.html will be loaded
 
     cont = document.getElementById('scroll-container')
     CGender = JSON.parse(localStorage.getItem('CGender'));
+    // to count number of students displayed
     var counter = 0;
-
-
     var filters = JSON.parse(localStorage.getItem('filterData'))
-
-
-   
 
     fetch('./json_files/students.json')
     .then(function(response) {
@@ -486,75 +488,80 @@ function scroll(){
         let nStudent = student.length;
         container = document.getElementById('scroll-container');
         for(let i = 0; i < nStudent  ; i++) {
-        
+            // iterating through the json 
             if (filters == null || filters == []) {
-        
+                // if there are no filters, everyone will be qualified
                 qualified =  true;
+                // if there are no filter, no need to display the remove filters button
                 document.getElementById('removeFilters').style.display = "none"
             }
             else{
-        
                 qualified = checkFilter(student[i],filters )  
             }
         
             if(CGender.includes(student[i].Gender)){
+                // if the student gender is in the user's "interested in" array
         
-            if(qualified){
-            counter =+ 1;
-        
-            let div = document.createElement('div');
-            div.className = "box"; // Apply the class name to the div
-      
-
-            //create a container for the student name
-            let smallerContainer = document.createElement('div');
-            smallerContainer.className = "smaller-container"; // Apply a class name for styling
-            let UltrasmallerContainer = document.createElement('div');
-            UltrasmallerContainer.className = "ultra-smaller-container"; // Apply a class name for styling
+                if(qualified){
+                    // if the student passes through the filter
+                    counter =+ 1;
+                
+                    let div = document.createElement('div');
+                    div.className = "box"; // Apply the class name to the div
             
-            // student name element
-            let studentName = document.createElement('p');
-            studentName.innerHTML = student[i].Name + ", "  + student[i].Age ;
-            studentName.className = 'swipe-name'
 
-            //student image element
-            let studentImage = document.createElement('img');
-            studentImage.setAttribute('src', student[i].Photo);
+                    //create a container for the student
+                    let smallerContainer = document.createElement('div');
+                    smallerContainer.className = "smaller-container"; // Apply a class name for styling
+                    let UltrasmallerContainer = document.createElement('div');
+                    UltrasmallerContainer.className = "ultra-smaller-container"; // Apply a class name for styling
+                    
+                    // student name element
+                    let studentName = document.createElement('p');
+                    studentName.innerHTML = student[i].Name + ", "  + student[i].Age ;
+                    studentName.className = 'swipe-name'
 
-            //student basic details
-            let basicDetails = document.createElement('p')
-            basicDetails.innerHTML = "Currently in " + "<b>" + student[i]["Year of Study"]+ "</b>" + " year.<br>" + "IITB Roll Number: "+ student[i]["IITB Roll Number"]  
+                    //student image element
+                    let studentImage = document.createElement('img');
+                    studentImage.setAttribute('src', student[i].Photo);
 
-            //interests and hobbies
-            let intAndHob = document.createElement('p');
-            intAndHob.innerHTML = "<b>Interests</ b> <br> ";
-            for(x=0; x<student[i].Interests.length-1; x+=1) intAndHob.innerHTML += student[i].Interests[x] + ",  " 
-            intAndHob.innerHTML += student[i].Interests[student[i].Interests.length-1] + "<br><b>Hobbies </b><br>"
-            for(x=0; x<student[i].Hobbies.length-1; x+=1) intAndHob.innerHTML += student[i].Hobbies[x] + ", "
-            intAndHob.innerHTML += student[i].Hobbies[student[i].Hobbies.length-1]
+                    //student basic details, includes year of study and iitb roll number
+                    let basicDetails = document.createElement('p')
+                    basicDetails.innerHTML = "Currently in " + "<b>" + student[i]["Year of Study"]+ "</b>" + " year.<br>" + "IITB Roll Number: "+ student[i]["IITB Roll Number"]  
 
+                    //interests and hobbies
+                    let intAndHob = document.createElement('p');
+                    intAndHob.innerHTML = "<b>Interests</ b> <br> ";
+                    for(x=0; x<student[i].Interests.length-1; x+=1) intAndHob.innerHTML += student[i].Interests[x] + ",  " 
+                    intAndHob.innerHTML += student[i].Interests[student[i].Interests.length-1] + "<br><b>Hobbies </b><br>"
+                    for(x=0; x<student[i].Hobbies.length-1; x+=1) intAndHob.innerHTML += student[i].Hobbies[x] + ", "
+                    intAndHob.innerHTML += student[i].Hobbies[student[i].Hobbies.length-1]
 
+                    //add to the div
+                    // this div structure is to apply styles later
+                //     scroll-container                      box
+                //     ______|__________...                   |
+                //    |    |    |    |  ...            smaller-container   
+                //   box box   box  box ...                ___|___ 
+                //                                        |       |   
+                //                                     profile  ultra-smaller-
+                //                                       img      container
+                //                                                    |
+                //                                           rest of the details 
 
-
-            //add to the div
-            
-            smallerContainer.appendChild(studentImage);
-            UltrasmallerContainer.appendChild(studentName);
-            UltrasmallerContainer.appendChild(basicDetails)
-            UltrasmallerContainer.appendChild(intAndHob);
-            smallerContainer.appendChild(UltrasmallerContainer)
-            div.appendChild(smallerContainer);
-            
-            
-           
-
-            // Append the div to the container
-            container.appendChild(div);
+                    smallerContainer.appendChild(studentImage);
+                    UltrasmallerContainer.appendChild(studentName);
+                    UltrasmallerContainer.appendChild(basicDetails)
+                    UltrasmallerContainer.appendChild(intAndHob);
+                    smallerContainer.appendChild(UltrasmallerContainer)
+                    div.appendChild(smallerContainer);
+                    
+                    // Append the div to the container
+                    container.appendChild(div);
             }}
-
-            
         }
 
+        // border cases for css
         boxArray = document.getElementsByClassName('box')
         if(boxArray.length == 1){
         boxArray[boxArray.length-1].setAttribute('style', "margin-left: 0%;")
@@ -563,6 +570,7 @@ function scroll(){
             boxArray[boxArray.length-1].setAttribute('style', "margin-right: 20%;")
         }
         if(counter == 0){
+            // if no result is found go to this page
             window.location.href = "scroll_not_found.html"
         }
     }
@@ -597,7 +605,9 @@ function removeFilters(){
 
 
 function logoutFun(){
+    // function is called when logout is clicked on the navbar
 
+    // everything stored in the local storage is removed so that no difficulty arises if a different user logs in again
     localStorage.removeItem("matchedStudent");
     localStorage.removeItem("detailsFilled");
     localStorage.removeItem("maxScore")
@@ -607,8 +617,13 @@ function logoutFun(){
 }
 
 function openNav(){
+    //function is called when filter button in the scroll_or_swipe.html page is clicked
+    // opens the filterbar
+
     document.getElementById("filterBar").style.height = "180px";
+    // now clicking on the filter button will close the filter bar 
     document.getElementById('filter-dropdown').setAttribute('onclick','closeNav()')
+    // the dropdown image present in the filter button will get reversed
     document.getElementById('dropdown-arrow').setAttribute('src','./assets/caret-arrow-up.png')
     document.getElementById('dropdown-arrow').setAttribute('width','10px')
     document.getElementById('filter-container').style.paddingBottom = "20px"
@@ -616,17 +631,25 @@ function openNav(){
 }
 
 function closeNav() {
+    // //function is called when filter button in the scroll_or_swipe.html page is clicked adn filter bar is open
+    // closes the filter bar
+
     document.getElementById("filterBar").style.height = "0";
+    // now clicking on the filter button will opem the filter bar 
     document.getElementById('filter-dropdown').setAttribute('onclick','openNav()')
+    // the up pointing image present in the filter button will get reversed
     document.getElementById('dropdown-arrow').setAttribute('src','./assets/down-arrow.png')
     document.getElementById('dropdown-arrow').setAttribute('width','15px')
     document.getElementById('filter-container').style.paddingBottom = "0px"
   }
 
 function  FilterFunction(){
+    // function is called when the filter button is hit in the filter bar in scroll_or_swipe.html page
+    // first takes the input... what hobby or interest the user want to filter out
 
-    interestsHobbies = [ ]
-
+    // combined array for interests and hobbies
+    interestsHobbies = []
+    // checking if the interests are checked one by one
     if(document.getElementById('Traveling').checked){
         interestsHobbies.push("Traveling")
     }
@@ -651,7 +674,7 @@ function  FilterFunction(){
     if(document.getElementById('Technology').checked){
         interestsHobbies.push("Technology")
     }
-    // hobbies input
+    // checking if the hobbies are checked one by one
     if(document.getElementById('Reading').checked){
         interestsHobbies.push("Reading")
     }
@@ -677,36 +700,43 @@ function  FilterFunction(){
         interestsHobbies.push("Photography")
     }
 
+    // when filter button is hit the remove filter button will appear
     document.getElementById('removeFilters').style.display = 'block'
     localStorage.setItem('filterData', JSON.stringify(interestsHobbies))
     window.location.href = 'scroll_or_swipe.html'
 }
 
 function renderOwnDetails() {
+    // this function will be triggered when the user clicks on home when on any page other than dating.html
+
+    // geting details and oimage from the local storage
     var user = JSON.parse(localStorage.getItem('user_details'));
     console.log(user)
     pic = localStorage.getItem('pfp')
     console.log(pic)
     CGender = JSON.parse(localStorage.getItem('CGender'));
     console.log(CGender)
+
+    //displaying the data in the appropriate elements
     document.getElementById('own-name').innerHTML = user.Name;
     document.getElementById('own-interests').innerHTML = "Interests include " +user.Interests.join(', ');
     document.getElementById('own-hobbies').innerHTML = user.Hobbies.join(', ') + " " + (user.Hobbies.length > 1 ? "are the hobbies." : "is an hobby.");
- 
- 
     document.getElementById('own-details').innerHTML = user.Age + ', ' + user.Gender + '<br>Looking for ' + (CGender.length == 1 ? CGender[0] : (CGender.length == 2) ? CGender[0] + ' and ' + CGender[1] : CGender[0] + ', ' + CGender[1] + ' and ' + CGender[2] ) ;
-
     document.getElementById('own-image').setAttribute('src', pic);
 
 }
 
+
 function scroll_the_scroll_container(e){
-    
+    // this function gets called when the user press any key when on the scrll_or_swipe.html page
+    //basically, if the key pressed in right arrow key, it will scroll the scroll-container to the next box, hence displaying the next user
+
     if(e.code == 'ArrowRight'){
         document.getElementById('scroll-container').scrollBy(1650,0);
     }
+
+    // if the key pressed in left arrow key, it will scroll the scroll-container to the previous box, hence displaying the previous user
     else if(e.code == 'ArrowLeft'){
         document.getElementById('scroll-container').scrollBy(-1650,0);
     }
-    //alert("pageXOffset: " + window.scrollX + ", scrollY: " + window.scrollY);
 }

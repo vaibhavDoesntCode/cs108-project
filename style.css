@@ -145,7 +145,7 @@ background: linear-gradient(90deg, rgba(253,47,111,1) 0%, rgba(254,87,64,1) 100%
   font-size: 20px;
 }
 #error_message, #error_message_forgot {
-  margin-top: -30px;
+  margin-top: -50px;
   background-color: #fce4e4;
   border: 1px #cc0033; 
   width: 190px;
