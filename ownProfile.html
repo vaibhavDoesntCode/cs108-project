@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cedarville+Cursive&family=Mukta:wght@200;300;400;500;600;700;800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
     </head>
-    <body onload="renderOwnDetails()" style="background-color: #21063485;" onkeydown="scroll_the_scroll_container(event)"  >
+    <body onload="renderOwnDetails()" style="background-image: url(./assets/own_profile_bg.jpg);">
         <nav>
             <ul class="navbar">
                 <img src="./assets/logo.png" alt="logo" class="nav-logo">
@@ -42,25 +42,55 @@
              
         </nav>
         <div class="container-div-own">
-            <div class="mini-nav">
-                <div class="mini-nav-left">
-                    <img src="./assets/logo.png" height="30px" alt="" srcset=""> 
-                    <p class="title-mini-nav">Your Profile</p>
-                </div>
-                <div class="mini-nav-right"><a href="dating.html" style=" color: rgb(208, 208, 208);">Edit Profile</a></div>
-            </div>
-            <div class="actual-details">
-                <div class="text-details">
+
+            <div class="container-1">
+                <img id="own-image" src="" height="200px" width="200px" ></img>
+                <div class="details-1">
                     <h1 id="own-name"></h1>
-                    <h4 id="own-details"></h4>
-                    <h3 id="own-interests"></h3>
-                    <h3 id="own-hobbies"></h3>
-
-
+                    <h4 id="own-age"></h4>
                 </div>
-                <img id="own-image" src="" width="300px" height="350px" ></img>
+                <button type="button" class="edit-profile-button" onclick="window.location.href = 'dating.html' " >Edit Profile</button>
+            </div>
+            <p style="margin-left: 10px; margin-bottom: 5px; font-size: 20px;" ><b>ABOUT</b> </p>
+            <div style="width: 80px; height: 7px; background-color: #210634; position: absolute; left: 22.3%; margin-top: -2px;" > </div>
+            <hr>
+
+            <div class="container-2">
+                <div class="text-details">
+                    <h3 id="own-head-body">My Interests</h3>
+                    <ul style="margin-left: 20px; margin-bottom: 30px;" id="own-interests"></ul>
+                    <h3 id="own-head-body">My Hobbies</h3>
+                    <ul style="margin-left: 20px;" id="own-hobbies"></ul>
+                </div>
+                <div class="table-details">
+                    <h2>My details</h2>
+                    <table id="own-table">
+                        <tr> 
+                            <td> IITB Roll Number</td>
+                            <td id="own-rollNo" ></td>
+                        </tr>
+                        <tr>
+                            <td>Year of Study</td>
+                            <td id="own-yos" ></td>
+                        </tr>
+                        <tr>
+                            <td>Gender</td>
+                            <td id="own-gender"></td>
+                        </tr>
+                        <tr>
+                            <td>Looking for</td>
+                            <td id="own-lookingFor"></td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td id="own-email"></td>
+                        </tr>
+                    </table>
+                </div>
 
             </div>
+            </div>  
+
         </div>
           <script src="script.js"></script>
     </body>

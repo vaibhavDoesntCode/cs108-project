@@ -112,7 +112,7 @@ function submitHandler(){
         localStorage.setItem('pfp', base64EncodedData);
       };
 
-    console.log(pfp)
+    // console.log(pfp)
 
     // converting the data input3 by the user into object
     user_data = {
@@ -194,7 +194,6 @@ function renderMatchFound(){
     if(maxScore < 0.4) window.location.href = 'sorry.html'
     //filling in the details
     document.getElementById('nameMatch').innerHTML = matchedStudent.Name
-    document.getElementById('primaryDetails').innerHTML =  matchedStudent.Name + " is " + matchedStudent.Age + " years old, Currently in " + matchedStudent["Year of Study"] + ' year.'
     document.getElementById('match-image').setAttribute('src', matchedStudent.Photo)
     document.getElementById('linkOnCard').innerHTML = "More about " + matchedStudent.Name
     document.getElementById('render-score').innerHTML = maxScore + "%"
@@ -484,7 +483,7 @@ function scroll(){
         return response.json();
     })
     .then(function(student) {
-        
+        user = JSON.parse(localStorage.getItem('user_details'))
         let nStudent = student.length;
         container = document.getElementById('scroll-container');
         for(let i = 0; i < nStudent  ; i++) {
@@ -505,6 +504,8 @@ function scroll(){
                 if(qualified){
                     // if the student passes through the filter
                     counter =+ 1;
+
+                    console.log('adv')
                 
                     let div = document.createElement('div');
                     div.className = "box"; // Apply the class name to the div
@@ -523,6 +524,7 @@ function scroll(){
 
                     //student image element
                     let studentImage = document.createElement('img');
+                    studentImage.className = 'scroll-image'
                     studentImage.setAttribute('src', student[i].Photo);
 
                     //student basic details, includes year of study and iitb roll number
@@ -536,6 +538,19 @@ function scroll(){
                     intAndHob.innerHTML += student[i].Interests[student[i].Interests.length-1] + "<br><b>Hobbies </b><br>"
                     for(x=0; x<student[i].Hobbies.length-1; x+=1) intAndHob.innerHTML += student[i].Hobbies[x] + ", "
                     intAndHob.innerHTML += student[i].Hobbies[student[i].Hobbies.length-1]
+
+                    let scoreImage = document.createElement('img')
+                    scoreImage.setAttribute('src', './assets/heart-hand-drawing.png')
+                    scoreImage.setAttribute('width', '300px')
+                    scoreImage.className = 'score-img'
+                    
+                    //  scoreImage.innerHTML = '<p><b>'+ 'sk damc'+'%</b><br>Match</p>'
+                    
+
+                    // let scoreDisplay = document.createElement('p');
+                    // scoreDisplay.innerHTML ='<b>'+ scoreCalculator(user, student[i]) + '%</b><br>Match'
+                    // scoreDisplay.setAttribute('class','scoreDisplay')
+                    // scoreDisplay.className = 'score-scroll'
 
                     //add to the div
                     // this div structure is to apply styles later
@@ -553,6 +568,8 @@ function scroll(){
                     UltrasmallerContainer.appendChild(studentName);
                     UltrasmallerContainer.appendChild(basicDetails)
                     UltrasmallerContainer.appendChild(intAndHob);
+                    // UltrasmallerContainer.appendChild(scoreDisplay)
+                    // UltrasmallerContainer.appendChild(scoreImage)
                     smallerContainer.appendChild(UltrasmallerContainer)
                     div.appendChild(smallerContainer);
                     
@@ -612,7 +629,9 @@ function logoutFun(){
     localStorage.removeItem("detailsFilled");
     localStorage.removeItem("maxScore")
     localStorage.removeItem('filterData')
-    localStorage.removeItem('CGender')
+    localStorage.removeItem('CGender');
+    localStorage.removeItem('pfp')
+    localStorage.removeItem('user_details')
     
 }
 
@@ -719,11 +738,20 @@ function renderOwnDetails() {
 
     //displaying the data in the appropriate elements
     document.getElementById('own-name').innerHTML = user.Name;
-    document.getElementById('own-interests').innerHTML = "Interests include " +user.Interests.join(', ');
-    document.getElementById('own-hobbies').innerHTML = user.Hobbies.join(', ') + " " + (user.Hobbies.length > 1 ? "are the hobbies." : "is an hobby.");
-    document.getElementById('own-details').innerHTML = user.Age + ', ' + user.Gender + '<br>Looking for ' + (CGender.length == 1 ? CGender[0] : (CGender.length == 2) ? CGender[0] + ' and ' + CGender[1] : CGender[0] + ', ' + CGender[1] + ' and ' + CGender[2] ) ;
+    for(i=0; i<user.Interests.length; i +=1){
+        document.getElementById('own-interests').innerHTML += '<li>' +user.Interests[i] + '</li>';
+    }
+    
+    for(i=0; i<user.Hobbies.length; i +=1){
+        document.getElementById('own-hobbies').innerHTML += '<li>' +user.Hobbies[i] + '</li>';
+    }
+    document.getElementById('own-age').innerHTML = user.Age;
     document.getElementById('own-image').setAttribute('src', pic);
-
+    document.getElementById('own-rollNo').innerHTML = user['IITB Roll Number'];
+    document.getElementById('own-yos').innerHTML = user['Year of Study']
+    document.getElementById('own-gender').innerHTML = user.Gender
+    document.getElementById('own-lookingFor').innerHTML = CGender
+    document.getElementById('own_email').innerHTML = user.Email
 }
 
 

@@ -129,12 +129,12 @@ background: linear-gradient(90deg, rgba(253,47,111,1) 0%, rgba(254,87,64,1) 100%
 }
 
 .logo{
-  width: 80px;
-  height: 80px;
+  width: 120px;
+  height: 120px;
 }
 
 .login-logo-div{
-  margin: 20px 0 0 25px;
+  margin: 0px 0 0 5px;
 }
 
 .logo-tagline{
@@ -166,6 +166,7 @@ background: linear-gradient(90deg, rgba(253,47,111,1) 0%, rgba(254,87,64,1) 100%
 
 #match-image{
     /* display: block; */
+    border-radius: 100px 100px 0 0;
     width: 200px;
     height: 200px;
 }
@@ -223,7 +224,9 @@ nice pinkish pruple color for gradiet #98005B
     box-shadow: #1a0303 20px 20px 20px;
     transition: margin-top .5s;
     padding: 16px;
-    scroll-behavior: smooth
+    scroll-behavior: smooth;
+    height: 555px;
+    overflow-y: hidden;
   }
 
 
@@ -241,11 +244,10 @@ nice pinkish pruple color for gradiet #98005B
     margin-left: 16%;
   }
 
-  .box img{
-    width: 80vh;
-    height: 80vh;
-    display: inline-flex;
-  }
+
+
+
+
 
 .smaller-container{
   white-space: initial;
@@ -260,10 +262,6 @@ nice pinkish pruple color for gradiet #98005B
 
 .ultra-smaller-container{
   font-size: 24px;
-}
-
-.box img{
-  border-radius:0 50% 50% 0;
 }
 
 
@@ -346,8 +344,30 @@ background-color: #9c7da152;
 
 
 
+.scoreDisplay{
+  background-image: url(./assets/heart-hand-drawing.png);
+}
 
+.scroll-image{
+  border-radius:0 50% 50% 0;
+  width: 80vh;
+  height: 80vh;
+  display: inline-flex;
+}
 
+.score-img{
+  position: relative;
+  left: 400px;
+  top: -100px;
+}
+
+.score-scroll{
+  text-align: center;
+  position: relative;
+  left: 330px;
+  top: 90px;
+  z-index: 2;
+}
 
 /* @media screen and (max-height: 450px) {
   .filterBar {padding-top: 15px;}
@@ -392,8 +412,9 @@ background-color: #9c7da152;
 }
 
 .nav-logo{
-  margin: 10px;
-  width: 50px;
+  margin-left: -10px;
+  width: 90px;
+  margin-top: -10px;
 }
 
 .title-nav{
@@ -515,7 +536,7 @@ background: linear-gradient(90deg, rgba(253,47,111,1) 0%, rgba(254,87,64,1) 100%
 }
 
 .card{
-  width: 20%;
+  width: 352px;
   height: 435px;
   margin-left: 55%;
   margin-top: -90px ;
@@ -528,13 +549,13 @@ background: linear-gradient(90deg, rgba(253,47,111,1) 0%, rgba(254,87,64,1) 100%
 
 .front {
 position: absolute;
-width: 20%;
+width: 352px;
 height: 435px;
 border: 1px solid #4c1f78;
 backface-visibility: hidden;
-background-image: url(./assets/card-frontPage.webp);
+background-image: url(./assets/cardbg.png);
 background-size: contain;
-
+background-size: 435px 100% ;
 transform-origin: 0% 50%;
 transform: perspective(800px);
 transition: all 1s ease-in-out;
@@ -553,7 +574,7 @@ background-color: pink;
 }
 .back {
 position: absolute;
-width: 20%;
+width: 352px;
 height: 435px;
 margin: -10px 0px 0px -10px;
 margin: auto;
@@ -632,66 +653,76 @@ color: #1a0303;
 
 
 /* ownProfile css */
-.mini-nav{
-  box-sizing: border-box;
-  width: 610px;
-  height: 60px;
-  background-color: #210634;
-  margin: auto;
-  margin-top: 80px;
-  padding: 15px 10px 15px 15px;
-  display: flex;
-
-}
-
-.title-mini-nav{
-  color: rgb(208, 208, 208);
-  font-family: cascadiaCode;
-  font-size: 15px;
-}
-.mini-nav-left{
-  display: flex;
-  flex: 1;
-  text-align: left;
-}
-.mini-nav-left p{
-  padding-top: 5px;
-  padding-left: 5px;
-}
-
-.mini-nav-right{
+.container-div-own{
+  margin-left: 20%;
+  margin-top:2%;
+  width: 60%;
+  background-color: #210634de;
+  padding: 2%;
   color: white;
-  flex: 1;
-  text-align: right;
-  font-family: cascadiaCode;
-  font-size: 15px;
-  color: rgb(208, 208, 208);
-  text-decoration: none;
 }
-
-
-
-
-.actual-details{
-  box-sizing: border-box;
-  box-shadow: rgba(0, 0, 0, 0.552) 20px 20px 20px 20px;
+.container-1{
   display: flex;
-  width: 610px;
-  background-color: white;
-  margin: auto;
-
- 
+  gap: 100px;
+  margin-bottom: 20px;
 }
-.text-details{
-  display: block;
-  width: 300px;
-  padding: 40px 20px;
+.details-1{
+  margin-left: -20px;
 }
-
 #own-name{
-  font-size: 40px;
+  font-size: 50px;
   font-weight: 400;
 }
+#own-age{
+  padding-left: 5px;
+  font-weight: 400;
+  color: grey;
+  font-size: 30px;
+}
+
+.edit-profile-button{
+  margin-left: 200px;
+  height: 30px;
+  margin-top: 20px;
+  margin-top: 10px;
+  width: 120px;
+  height: 40px;
+  border-radius: 20px;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  border: 0;  
+  cursor: pointer;
+  background: rgb(253,47,111);
+background: linear-gradient(90deg, rgba(253,47,111,1) 0%, rgba(254,87,64,1) 100%);
+}
+
+.container-2{
+  display: flex;
+  margin-top: 40px;
+  gap: 400px;
+}
+
+.text-details{
+  margin-left: 40px;
+}
+
+#own-table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#own-table td, #own-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  width: 200px;
+}
+
+#own-table tr:nth-child(even){background-color: #210634c5;}
+
+#own-table tr:hover {background-color: #210634;}
+
 
 
 
