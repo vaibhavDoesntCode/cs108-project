@@ -184,6 +184,7 @@ function findMatch(user){
 function renderMatchFound(){
     //this function is to render the match on the matchFound.html
 
+    checkCookiePages();
     //accessing items from the localstorage
     var storedJsonString = localStorage.getItem('matchedStudent');
     //coverting the stored string into javascript object
@@ -296,7 +297,7 @@ function scoreCalculator(user1, user2){
 
 function onLogin(){
     //this function gets triggered when login button is clicked
-
+    
     //fetching the login file
     fetch('./json_files/login.json')
     .then(function(response) {
@@ -342,9 +343,10 @@ function checkLoginData(data){
         error_message.style.border = "1px solid #ff0000"
         return
     }
-
+    setCookie();
     //if everything is right... this function will lead the user to the dating.html
-    window.location.href = "dating.html"
+     window.location.href = "dating.html"
+
     
 }
 
@@ -472,6 +474,7 @@ function scroll(){
     // to render everyoone (who match the filters) in the scroll-container
     // function will be called when scroll_or_swipe.html will be loaded
 
+    checkCookiePages();
     cont = document.getElementById('scroll-container')
     CGender = JSON.parse(localStorage.getItem('CGender'));
     // to count number of students displayed
@@ -632,6 +635,7 @@ function logoutFun(){
     localStorage.removeItem('CGender');
     localStorage.removeItem('pfp')
     localStorage.removeItem('user_details')
+    document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     
 }
 
@@ -766,5 +770,84 @@ function scroll_the_scroll_container(e){
     // if the key pressed in left arrow key, it will scroll the scroll-container to the previous box, hence displaying the previous user
     else if(e.code == 'ArrowLeft'){
         document.getElementById('scroll-container').scrollBy(-1650,0);
+    }
+}
+
+// function setCookie(cname,cvalue,exdays) {
+//     const d = new Date();
+//     d.setTime(d.getTime() + (exdays*24*60*60*1000));
+//     let expires = "expires=" + d.toUTCString();
+//     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+//   }
+  
+  
+//   function getCookie(cname) {
+//     let name = cname + "=";
+//     let decodedCookie = decodeURIComponent(document.cookie);
+//     let ca = decodedCookie.split(';');
+//     for(let i = 0; i < ca.length; i++) {
+//       let c = ca[i];
+//       while (c.charAt(0) == ' ') {
+//         c = c.substring(1);
+//       }
+//       if (c.indexOf(name) == 0) {
+//         return c.substring(name.length, c.length);
+//       }
+//     }
+//     return "";
+//   }
+  
+//function checkCookie() {
+//     let user = getCookie("username");
+//     if (user != "") {
+//       alert("Welcome again " + user);
+//     } else {
+//        user = prompt("Please enter your name:","");
+//        if (user != "" && user != null) {
+//          setCookie("username", user, 30);
+//        }
+//     }
+//   }
+
+function setCookie(){
+    console.log('function m toh aa rha')
+            const d = new Date();
+            cvalue = document.getElementById('username').value
+            d.setTime(d.getTime() + (1*60*60*1000));
+            let expires = "expires=" + d.toUTCString();
+            document.cookie = "username" + "=" + cvalue + ";" + expires + ";path=/";
+          
+}
+
+function getCookie(key){
+    let Key = key + '=';
+    decodedCookie = decodeURIComponent(document.cookie);
+    let arr = decodedCookie.split(';');
+    for(let i = 0; i<arr.length; i+=1){
+        while(arr[i].charAt(0) == ' '){
+            arr[i]= arr[i].substring(1);
+        }
+        if (arr[i].indexOf(Key) == 0){
+            return arr[i].substring(Key.length, arr[i].length)
+        }
+    }
+    console.log('returning  ""')
+    return "";
+}
+
+
+function checkCookie(){
+    console.log('bvv')
+    let user = getCookie("username")
+    if (user != "" ){
+        window.location.href = "dating.html"
+    }
+}
+
+function checkCookiePages(){
+    let user = getCookie("username")
+    if (user == "" ){
+        window.location.href = "login.html"
+        window.alert('Please Login First')
     }
 }
