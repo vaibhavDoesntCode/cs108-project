@@ -103,15 +103,16 @@ function submitHandler(){
     const selectedFile = document.getElementById('pfp').files[0];
     const reader = new FileReader();
     reader.readAsDataURL(selectedFile);
-    var base64EncodedData;
+    
+    //console.log(selectedFile)    
     reader.onload = function(event) {
-        const base64EncodedData = event.target.result;
+        base64EncodedData = event.target.result; // Remove the 'const' keyword
         console.log(base64EncodedData);
-      
+    
         // Store data in local storage after it's available
         localStorage.setItem('pfp', base64EncodedData);
-      };
-
+    };
+    
     // console.log(pfp)
 
     // converting the data input3 by the user into object
@@ -129,7 +130,7 @@ function submitHandler(){
 
     //setting items in the local storage
     localStorage.setItem('detailsFilled', true)
-    localStorage.setItem('CGender', JSON.stringify(choiceGender))
+   // localStorage.setItem('CGender', JSON.stringify(choiceGender))
     localStorage.setItem('user_details', JSON.stringify(user_data) )
     
     findMatch(user_data);
@@ -167,7 +168,7 @@ function findMatch(user){
             index += 1;
         }
         //with this... on simply clicking on submit button on dating.html... foundMAtch.html will open and renderMatchFound() will be triggered
-        window.location.href = "foundMatch.html"
+      //  window.location.href = "foundMatch.html"
 
         //js objects cant be stored in the localstorage directly, converting them to strings
         var jsonString = JSON.stringify(student[indexMaxScore]);
@@ -476,7 +477,9 @@ function scroll(){
 
     checkCookiePages();
     cont = document.getElementById('scroll-container')
-    CGender = JSON.parse(localStorage.getItem('CGender'));
+    student = JSON.parse(localStorage.getItem('user_details'));
+    CGender = student["Choice of Gender"]
+    console.log(CGender)
     // to count number of students displayed
     var counter = 0;
     var filters = JSON.parse(localStorage.getItem('filterData'))
@@ -632,7 +635,6 @@ function logoutFun(){
     localStorage.removeItem("detailsFilled");
     localStorage.removeItem("maxScore")
     localStorage.removeItem('filterData')
-    localStorage.removeItem('CGender');
     localStorage.removeItem('pfp')
     localStorage.removeItem('user_details')
     document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
@@ -737,7 +739,8 @@ function renderOwnDetails() {
     console.log(user)
     pic = localStorage.getItem('pfp')
     console.log(pic)
-    CGender = JSON.parse(localStorage.getItem('CGender'));
+    CGender = user["Choice of Gender"]
+    //CGender = JSON.parse(localStorage.getItem('CGender'));
     console.log(CGender)
 
     //displaying the data in the appropriate elements
