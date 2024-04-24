@@ -168,7 +168,7 @@ function findMatch(user){
             index += 1;
         }
         //with this... on simply clicking on submit button on dating.html... foundMAtch.html will open and renderMatchFound() will be triggered
-      //  window.location.href = "foundMatch.html"
+        window.location.href = "foundMatch.html"
 
         //js objects cant be stored in the localstorage directly, converting them to strings
         var jsonString = JSON.stringify(student[indexMaxScore]);
