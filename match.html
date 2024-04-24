@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Finder</title>
+        <title>Match- Finder</title>
         <link rel="stylesheet" href="style.css">
         <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
                         <!-- google fonts imported from https://fonts.google.com/ -->
@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cedarville+Cursive&family=Mukta:wght@200;300;400;500;600;700;800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
     </head>
-    <body onload="renderMatch()" style="background-image: url(./assets/matchbg.jpg);">
+    <body onload="renderMatch()" style="background-image: url(./assets/matchbg1.jpg);">
         <nav>
             <ul class="navbar">
                 <img src="./assets/logo.png" alt="logo" class="nav-logo">
@@ -41,16 +41,49 @@
             </ul>
         </nav>       
 
-        <div class="match-container">
-            <h1>You found a match</h1>
+
             
-            <p id="details_match"></p>
-            <script src="script.js"></script>
-            <h2 id="nameMatch"></h2>
-            <p id="primaryDetails" ></p>
-            <p id="hobbiesMatch"></p>
-            <p id="interestsMatch"></p>
-            <a href="scroll_or_swipe.html">Not good enough?</a>
-        </div>
-    </body>
-</html>
+            <div class="container-div-match">
+
+                <div class="container-1">
+                    <img id="match-image1" src="" height="200px" width="200px" ></img>
+                    <div class="details-1">
+                        <h1 id="match-name"></h1>
+                        <h4 id="match-age"></h4>
+                    </div>
+                </div>
+                <p style="margin-left: 10px; margin-bottom: 5px; font-size: 20px;" ><b>ABOUT</b> </p>
+                <div style="width: 80px; height: 7px; background-color: #210634; position: absolute; left: 22.3%; margin-top: -2px;" > </div>
+                <hr>
+    
+                <div class="container-2">
+                    <div class="text-details">
+                        <h3 id="match-head-body">My Interests</h3>
+                        <ul style="margin-left: 20px; margin-bottom: 30px;" id="match-interests"></ul>
+                        <h3 id="match-head-body">My Hobbies</h3>
+                        <ul style="margin-left: 20px;" id="match-hobbies"></ul>
+                    </div>
+                    <div class="table-details">
+                        <h2>Details</h2>
+                        <table id="match-table">
+                            <tr> 
+                                <td> IITB Roll Number</td>
+                                <td id="match-rollNo" ></td>
+                            </tr>
+                            <tr>
+                                <td>Year of Study</td>
+                                <td id="match-yos" ></td>
+                            </tr>
+                            <tr>
+                                <td>Gender</td>
+                                <td id="match-gender"></td>
+                            </tr>
+                        </table>
+                    </div>
+    
+                </div>
+            </div>  
+    
+              <script src="script.js"></script>
+        </body>
+    </html>

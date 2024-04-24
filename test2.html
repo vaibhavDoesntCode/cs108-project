@@ -1,110 +1,63 @@
 <!DOCTYPE html>
+<html>
+    <head>
+        <title> Finder</title>
+         <link rel="stylesheet" href="style.css">
+ 
+    <!-- google fonts imported from https://fonts.google.com/ -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Mukta:wght@200;300;400;500;600;700;800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cedarville+Cursive&family=Mukta:wght@200;300;400;500;600;700;800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cedarville+Cursive&family=Mukta:wght@200;300;400;500;600;700;800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
-<HTML>
-    <HEAD>
-        <title>CHOMU</title>
-        <link rel="stylesheet" href="style.css">
 
-    </HEAD>
-    <body style="background-color: pink;">
-      <nav>
-        <ul class="navbar">
-            <img src="./assets/logo.png" alt="logo" class="nav-logo">
-            <span class="title-nav">Finder</span>
-            <li><a  href="dating.html">Home</a></li>
-            <li><a class="active" href="/match.html">Your Match!</a></li>
-            <li><a href="/scroll_or_swipe.html">Find new people!!</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="/login.html">Log out</a></li>
-          </ul>
-        </nav>
-        <div class="dating-everything">
-          <h1 class="heading-match">We found a </h1> <h1 class="match-decorated">Match</h1> <h1 class="match-forYou" > for you</h1>
-            <div class="card">
-                <div class="back"> </div>
-                <div class="front"><h1>Your match is .....</h1> <p>Hover over here to reveal your match</p></div>
-                <div class="text-container">
-                  <h2 id="nameMatch"></h2>
-                    <p > i love you jaaneman teri mkc</p>
-                    <img src="" id="match-image" width="200px">
-                    <p id="primaryDetails" ></p>
-                    
-                </div>
-            </div>
+    </head>
+    <body  onload="checkCookie()" style="background-image: url(./assets/login.png); background-position: 50% 0; background-repeat: no-repeat;">
+      <div class="login-logo-div">
+      <img src="./assets/logo.png" alt="logo" class="logo" id="login-logo-img">
+      <p class="text-logo" ><span class="title-login-page">Finder</span><br><span class="logo-tagline">Find your perfect match</span></p>
+  </div>
+       
+        <div class="login-form">
+            <h2>Login without password</h2>
+            <form>
+                <p id="error_message_forgot"></p>
+                <label for="username" style="margin-left: -63%;">Enter username: </label><br>
+                <div class="div-one-forgot">
+                <input type="text" name="username" id="forgot-username" placeholder="kavyagupta9595">
+                <button type="button" onclick="findSecret()" id="next-button" > &#8594</button><br>
+              </div>
+                <label for="secretAnswer" id="secretQuestion" style="margin-left: -83%;"></label>
+                <input type="text" id="secretAnswer" placeholder="Enter your answer"><br>
+                <button type="button" onclick="checkSecretAnswer()" id="checkSecretAnswerInput" class="login-button" >Login</button>
+            </form>
         </div>
+        <div class="animated-div"></div>
 
-        <script>
-          console.log(localStorage.getItem('lmao'))
-        </script>
+        <script src="script.js"></script>
     </body>
 
     <style>
-        body{
-           background-color: pink;
-        }
+       body{
+        background-color: #FFB9DB ;
+        display: flex;
+        padding: 30px 70px;
+        gap: 400px;
+        
+    }
 
-        .card{
-            width: 20%;
-            height: 450px;
-            margin-left: 50%;
-            margin-top: 125px ;
-            box-shadow: inset 5px 0px 10px 0px rgba(0, 0, 0, 0.1);
-            background-color: #d4eae9;
+    .div-one-forgot{
+      display: flex;
+    }
 
-            
-        }
-
-  .front {
-  position: absolute;
-  width: 20%;
-  height: 450px;
-   border: 1px solid #4c1f78;
-   backface-visibility: hidden;
-  background-color: #ded8cd;
-  background-size: contain;
-   /* transform-style: preserve-3d; */
-  transform-origin: 0% 50%;
-  transform: perspective(800px);
-  transition: all 1s ease-in-out;
-  /* filter: saturate(1.125) brightness(1.0125); */
-}
-
-/* .front image{
-    width: 450px;
-  height: 700px;
-} */
-.card:hover .front {
-  transform: perspective(800px) rotateY(-170deg);
-  background-color: rgb(205, 205, 205);
-}
-.card:hover .back {
-  transform: perspective(800px) rotateY(-170deg);
-  box-shadow: 7px 0px 2px 0px rgba(0, 0, 0, 0.3),
-    inset 2px 0px 15px 0px rgba(0, 0, 0, 0.1);
-  background-color: #d4eae9;
-}
-.back {
-  position: absolute;
-  width: 20%;
-  height: 450px;
-  margin: -10px 0px 0px -10px;
-  margin: auto;
-  
-  box-shadow: inset 5px 0px 15px 0px rgba(0, 0, 0, 0.1),
-    3px 0px 3px 1px rgba(0, 0, 0, 0.3);
-  transform-style: preserve-3d;
-  transform-origin: 0% 50%;
-  transform: perspective(800px) rotateY(0deg);
-  transition: all 1s ease-in-out;
-  background-color: #d4eae9;
-}
-.text-container {
-  width: 100%;
-  height: 80%;
-  margin-top: 40px;
-  margin-right: 20px;
-  margin-left: 20px;
-
-  color: #1a0303;
-}
+    .login-form h2{
+      font-size: 30px;
+      margin-top: 44px;
+      margin-bottom: 50px;
+    }
     </style>
+</html>

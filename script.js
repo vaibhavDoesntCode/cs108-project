@@ -205,35 +205,32 @@ function renderMatchFound(){
 
 function renderMatch(){
     //this function is to render the details of the matched student on the match.html page... basically function renderMatchFound() but in detail
-
+    checkCookiePages()
     //getting data from the local storage
     var storedJsonString = localStorage.getItem('matchedStudent');
     //converting string into a readable js object
     var matchedStudent = JSON.parse(storedJsonString);
     //setting the name and details like iitb roll number, gender and age etc.
-    document.getElementById('nameMatch').innerHTML = matchedStudent.Name
-    document.getElementById('primaryDetails').innerHTML = matchedStudent.Age + ' ' + matchedStudent["Year of Study"] + ' year ' + matchedStudent["IITB Roll Number"]
+        
 
-    //setting hobbies
-    var hobbiesRender = ""
-    for(i = 0; i<matchedStudent.Hobbies.length-1; i += 1){
-        hobbiesRender += matchedStudent.Hobbies[i] + ', '
+    
+        //displaying the data in the appropriate elements
+        document.getElementById('match-name').innerHTML = matchedStudent.Name;
+        for(i=0; i<matchedStudent.Interests.length; i +=1){
+            document.getElementById('match-interests').innerHTML += '<li>' +matchedStudent.Interests[i] + '</li>';
+        }
+        
+        for(i=0; i<matchedStudent.Hobbies.length; i +=1){
+            document.getElementById('match-hobbies').innerHTML += '<li>' +matchedStudent.Hobbies[i] + '</li>';
+        }
+        document.getElementById('match-age').innerHTML = matchedStudent.Age;
+        document.getElementById('match-image1').setAttribute('src', matchedStudent.Photo);
+        document.getElementById('match-rollNo').innerHTML = matchedStudent['IITB Roll Number'];
+        document.getElementById('match-yos').innerHTML = matchedStudent['Year of Study']
+        document.getElementById('match-gender').innerHTML = matchedStudent.Gender
+        
+        
     }
-    hobbiesRender += matchedStudent.Hobbies[matchedStudent.Hobbies.length-1]
-    document.getElementById('hobbiesMatch').innerHTML = hobbiesRender
-
-    //setting interests
-    var interestsRender = ""
-    for(i = 0; i<matchedStudent.Interests.length-1; i += 1){
-        interestsRender += matchedStudent.Interests[i] + ', '
-    }
-    interestsRender += matchedStudent.Interests[matchedStudent.Interests.length-1]
-    document.getElementById('interestsMatch').innerHTML = interestsRender
-
-    //setting image by changing src
-    document.getElementById('match-image').setAttribute('src', matchedStudent.Photo)
-}
-
 
 function scoreCalculator(user1, user2){
     //this function is to calculate the compatablity score between 2 users
@@ -641,13 +638,13 @@ function logoutFun(){
     
 }
 
-function openNav(){
+function openFilterBar(){
     //function is called when filter button in the scroll_or_swipe.html page is clicked
     // opens the filterbar
 
     document.getElementById("filterBar").style.height = "180px";
     // now clicking on the filter button will close the filter bar 
-    document.getElementById('filter-dropdown').setAttribute('onclick','closeNav()')
+    document.getElementById('filter-dropdown').setAttribute('onclick','closeFilterBar()')
     // the dropdown image present in the filter button will get reversed
     document.getElementById('dropdown-arrow').setAttribute('src','./assets/caret-arrow-up.png')
     document.getElementById('dropdown-arrow').setAttribute('width','10px')
@@ -655,13 +652,13 @@ function openNav(){
 
 }
 
-function closeNav() {
+function closeFilterBar() {
     // //function is called when filter button in the scroll_or_swipe.html page is clicked adn filter bar is open
     // closes the filter bar
 
     document.getElementById("filterBar").style.height = "0";
     // now clicking on the filter button will opem the filter bar 
-    document.getElementById('filter-dropdown').setAttribute('onclick','openNav()')
+    document.getElementById('filter-dropdown').setAttribute('onclick','openFilterBar()')
     // the up pointing image present in the filter button will get reversed
     document.getElementById('dropdown-arrow').setAttribute('src','./assets/down-arrow.png')
     document.getElementById('dropdown-arrow').setAttribute('width','15px')
@@ -758,7 +755,7 @@ function renderOwnDetails() {
     document.getElementById('own-yos').innerHTML = user['Year of Study']
     document.getElementById('own-gender').innerHTML = user.Gender
     document.getElementById('own-lookingFor').innerHTML = CGender
-    document.getElementById('own_email').innerHTML = user.Email
+    document.getElementById('own-email').innerHTML = user["Email"]
 }
 
 

@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Finder</title>
-        <link rel="stylesheet" href="style.css">
+        <title> Finder</title>
         <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
         <link rel="preconnect" href="https://fonts.googleapis.com">
-
+        <link rel="stylesheet" href="style.css">
         <!-- google fonts imported from https://fonts.google.com/ -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Mukta:wght@200;300;400;500;600;700;800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -18,17 +17,18 @@
     
     </head>
 
-    <body style="background-image: url(./assets/LoginPageBg1a.jpg); background-repeat: no-repeat;" onload="checkCookie()" >
+    <body  onload="checkCookie()" style="background-image: url(./assets/login.png); background-position: 50% 0; background-repeat: no-repeat;">
         <div class="login-logo-div">
-        <img src="./assets/logo.png" alt="logo" class="logo">
-        <span><span class="title-login-page">Finder</span><span class="logo-tagline">Find your perfect match</span></span>
+        <img src="./assets/logo.png" alt="logo" class="logo" id="login-logo-img">
+        <p class="text-logo" ><span class="title-login-page">Finder</span><br><span class="logo-tagline">Find your perfect match</span></p>
     </div>
-    <div class="login-photos"><img  id="login-photos1" class="login-photos1"></img><img id="login-photos2" class="login-photos2"></img></div>
+    
     
         <div class="login-form">
             
             
-        <h1>LOGIN</h1>
+        <h1>Welcome</h1>
+        <p>Please enter your login details below</p>
         <form>
             <p id="error_message"></p>
             <label for="username">Username: </label><br>
@@ -48,4 +48,21 @@
     <div class="animated-div"></div>
         <script src="script.js"></script>
     </body>
+    
 </html>
+
+<style>
+
+
+
+
+    body{
+        background-color: #FFB9DB ;
+        display: flex;
+        padding: 30px 70px;
+        gap: 400px;
+        
+    }
+
+
+</style>

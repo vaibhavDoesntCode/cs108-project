@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-
-<HTML>
-    <HEAD>
-        <title>Finder</title>
-        <link rel="stylesheet" href="style.css">
+<html>
+    <head>
+        <title> Finder</title>
         <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
-                <!-- google fonts imported from https://fonts.google.com/ -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+
+        <!-- google fonts imported from https://fonts.google.com/ -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Mukta:wght@200;300;400;500;600;700;800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,45 +14,137 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cedarville+Cursive&family=Mukta:wght@200;300;400;500;600;700;800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    
+    </head>
 
-
-    </HEAD>
-    <body style="background-color:#f3f2f2;">
-      <nav>
-        <ul class="navbar">
-            <img src="./assets/logo.png" alt="logo" class="nav-logo">
-            <span class="title-nav">Finder</span>
-            <li><a onclick="detailsFilled = localStorage.getItem('detailsFilled')
-                if(detailsFilled){
-                    window.location.href='ownProfile.html'
-                }
-                else{
-                    window.location.href='dating.html'
-                }
-                ">Home</a></li>
-            <li><a class="active" href="/foundMatch.html">Your Match!</a></li>
-            <li><a href="/scroll_or_swipe.html">Find new people!!</a></li>
-            <li><a href="/about.html">About Us</a></li>
-            <li><a href="login.html"  onclick="logoutFun()">Log out</a></li>
-          </ul>
-        </nav>
-        <h1 class="head-match">Sorry, couldnt find a match for you</h1>
-        <input type="file" id="fileInput">
-<img src="" id="imageDisplay" alt="Uploaded Image">
-
-        <script>
-            document.getElementById('fileInput').addEventListener('change', function() {
-    var file = this.files[0]; // Get the file object
-    var imageDisplay = document.getElementById('imageDisplay');
-
-    if (file) {
-        var imageUrl = URL.createObjectURL(file); // Create a URL for the file
-        imageDisplay.src = imageUrl; // Set the URL as the image source
-    } else {
-        imageDisplay.src = ""; // Clear the image source if no file is selected
-    }
-});
-        </script>
+    <body  onload="checkCookie()" style="background-image: url(./assets/login.png); background-position: 50% 0; background-repeat: no-repeat;">
+        <div class="login-logo-div">
+        <img src="./assets/logo.png" alt="logo" class="logo" id="login-logo-img">
+        <p class="text-logo" ><span class="title-login-page">Finder</span><br><span class="logo-tagline">Find your perfect match</span></p>
+    </div>
+    
+    
+        <div class="login-form">
+            
+            
+        <h1>Welcome</h1>
+        <p>Please enter your login details below</p>
+        <form>
+            <p id="error_message"></p>
+            <label for="username">Username: </label><br>
+            <input type="text" name="username" id="username" placeholder="kavyagupta9595">
+            <br><br>
+            <label for="password">Password: </label><br>
+            <input type="password" name="password" id="password" placeholder="Enter Password">
+            <br>
+            
+        </form>
+        <div class="form-extras">
+        <button class="login-button" type="button" onclick="onLogin()">Login!</button><br><br>
+            <a href="forgot.html">Forgot password?</a>
+        </div>
+        
+    </div>
+    <div class="animated-div"></div>
+        <script src="script.js"></script>
     </body>
- 
+    
 </html>
+
+<style>
+
+*{
+  margin: 0;
+  padding: 0;
+  font-family: Poppins;
+}
+
+
+    body{
+        background-color: #FFB9DB ;
+        display: flex;
+        padding: 30px 70px;
+        gap: 400px;
+        
+    }
+
+    #login-logo-img{
+        width: 160px;
+        height: 160px;
+    }
+
+    .login-logo-div{
+        display: flex;
+    }
+    .title-login-page{
+        font-size: 50px;
+        padding-top: 0px;
+ 
+  font-family: "Bebas Neue", sans-serif;
+    }
+
+    .logo-tagline{
+        font-family: Cedarville Cursive;
+  color: #210634;
+  margin-top: -10px;
+    }
+
+    .text-logo{
+        padding-top: 15px;
+    }
+
+    .login-form{
+        margin-left: 200px;
+        margin-top: 40px;
+        
+        text-align: center;
+    }
+
+    .login-form h1{
+        font-size: 60px;
+        margin-bottom: 0;
+        color: #4A012E;
+    }
+
+    .login-form p{
+        margin-top: 0%;
+        margin-bottom: 60px;
+        color: rgb(80, 80, 80);
+    }
+
+    .login-form input{
+        height: 44px;
+        width: 360px;
+        border-radius: 10px;
+        border: none;
+        padding-left: 20px;
+    }
+    .login-form label{
+        margin-left: -75%;
+        font-size: 17px;
+    }
+
+    .form-extras{
+        margin-top: 30px;
+    }
+
+    .form-extras button{
+        width: 125px;
+        height: 40px;
+        border-radius: 20px;
+        color: white;
+        background-color: #C53059;
+        border: none;
+    }
+
+    .form-extras a{
+        text-decoration: none;
+        font-style: italic;
+    }
+
+    .form-extras a:hover{
+        text-decoration: underline;
+        font-size: 18px;
+        transition:width 1s ease-in-out
+    }
+</style>
