@@ -866,3 +866,48 @@ function removeFilterButton(){
     }
     
 }
+
+function search(){
+    let searchingFor = document.getElementById('search-bar').value.toLowerCase();
+    let pattern = new RegExp(searchingFor);
+    results = []
+    console.log(pattern);
+    fetch('./json_files/students.json')
+    .then(function(response) {
+        // Converting the response into a JavaScript object
+        return response.json();
+    })
+    .then(function(students){
+        // Loop through the students array
+        for(let i = 0; i < students.length; i++){
+            // Here you can use pattern.test(students[i]) to test against each student's data
+            if(pattern.test(students[i].Name.toLowerCase())){
+                results.push(students[i])
+                let div = document.createElement('div')
+                let image = document.createElement('img')
+                image.setAttribute('src',students[i].Photo)
+                let container = document.createElement('div')
+                let nameHeading = document.createElement('h1')
+                nameHeading.innerHTML = students[i].Name
+                let smallerContainer = document.createElement('div')
+                let age = document.createElement('p')
+                age.innerHTML = students[i].Age
+                let YOS = document.createElement('p')
+                YOS.innerHTML = students[i]['Year of Study']
+
+                smallerContainer.appendChild(age)
+                smallerContainer.appendChild(YOS)
+                container.appendChild(smallerContainer)
+                container.appendChild(nameHeading)
+                div.appendChild(image)
+                div.appendChild(container)
+
+                document.getElementById('results').appendChild(div)
+            }
+        }
+        console.log(results)
+    })
+    .catch(function(error){
+        console.log(error);
+    });
+}
