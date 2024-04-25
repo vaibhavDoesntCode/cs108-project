@@ -16,7 +16,7 @@
 
     </head>
     <body style="background-color: #410d65; background-image: url(./assets/swipebg.jpg);
-                                   overflow-x: hidden;" onkeydown="scroll_the_scroll_container(event)" onload="checkCookiePages()" >
+                                   overflow-x: hidden;" onkeydown="scroll_the_scroll_container(event)" onload="removeFilterButton()" >
         <nav>
             <ul class="navbar">
                 <img src="./assets/logo.png" alt="logo" class="nav-logo">
@@ -97,8 +97,26 @@
     
             </div>
             </div>
-    
-        <h1 class="head-match"> Sorry, we couldnt find anyone that match your interests... </h1>
+            <div class="container-extra">
+                <div class="extra-content">
+                    <h1>Sorry, we could not find anyone who had similar interests s</h1>
+                    <p>Try removing filter or chnage your profile a bit</p>
+                    <br>
+                    <button type="button" onclick="window.location.href ='dating.html'">
+                        Fill details
+                    </button>
+                </div>
+            
+        
         <script src="script.js"></script>
     </body>
+
+    <style>
+        .extra-content{
+            background-color: #f6d1f675;
+            padding: 60px;
+            border-radius: 20px;
+            border: solid white 2px;
+        }
+    </style>
 </html>

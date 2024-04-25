@@ -101,12 +101,14 @@ margin-top: -10px;
 .form-extras a{
   text-decoration: none;
   font-style: italic;
+  color: #1a0303;
+  transition: 0.3s ease-in-out
 }
 
 .form-extras a:hover{
   text-decoration: underline;
   font-size: 18px;
-  transition:width 1s ease-in-out
+
 }
 #error_message, #error_message_forgot {
   margin-top: -20px;
@@ -771,6 +773,45 @@ background: linear-gradient(90deg, rgba(253,47,111,1) 0%, rgba(254,87,64,1) 100%
   border-radius: 10px;
   box-shadow: #f494f0e8 2px 0px 10px;
 }
+
+
+/* extra pages css */
+
+.container-extra {
+  position: absolute;
+top: 50%;
+left: 58%;
+transform: translate(-50%, -50%);
+
+}
+
+.extra-content{
+  text-align: center;
+}
+
+.extra-content button {
+background-color: white;
+color: black;
+border-radius: 10em;
+font-size: 17px;
+font-weight: 600;
+padding: 10px 20px;
+cursor: pointer;
+transition: all 0.3s ease-in-out;
+border: 1px solid black;
+box-shadow: 0 0 0 0 black;
+}
+
+.extra-content button:hover {
+transform: translateY(-4px) translateX(-2px);
+box-shadow: 2px 5px 0 0 black;
+};
+
+.extra-content button:active {
+transform: translateY(2px) translateX(1px);
+box-shadow: 0 0 0 0 black;
+};
+
 
 
 .container {

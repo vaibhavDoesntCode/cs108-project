@@ -474,9 +474,13 @@ function scroll(){
 
     checkCookiePages();
     cont = document.getElementById('scroll-container')
-    student = JSON.parse(localStorage.getItem('user_details'));
-    CGender = student["Choice of Gender"]
-    console.log(CGender)
+    try {
+        student = JSON.parse(localStorage.getItem('user_details'));
+        CGender = student["Choice of Gender"]
+    } catch (error) {
+        CGender = ["Male", "Female", "Other"]
+    }
+   
     // to count number of students displayed
     var counter = 0;
     var filters = JSON.parse(localStorage.getItem('filterData'))
@@ -850,4 +854,15 @@ function checkCookiePages(){
         window.location.href = "login.html"
         window.alert('Please Login First')
     }
+}
+
+function removeFilterButton(){
+    checkCookiePages()
+    filters = JSON.parse(localStorage.getItem('filterData'))
+    console.log(filters)
+    if (filters == null || filters == [])
+    {
+        document.getElementById('removeFilters').style.display = 'none'
+    }
+    
 }
