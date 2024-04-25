@@ -867,8 +867,11 @@ function removeFilterButton(){
     
 }
 
-function search(){
+
+function searchFun(){
     let searchingFor = document.getElementById('search-bar').value.toLowerCase();
+
+    
     let pattern = new RegExp(searchingFor);
     results = []
     console.log(pattern);
@@ -883,17 +886,27 @@ function search(){
             // Here you can use pattern.test(students[i]) to test against each student's data
             if(pattern.test(students[i].Name.toLowerCase())){
                 results.push(students[i])
-                let div = document.createElement('div')
+                
+            }
+        }
+        console.log(results)
+         window.location.href = 'search.html';
+        
+        for(let i = 0; i < results.length; i++){
+            let div = document.createElement('div')
+                div.className = 'result-student'
+                div.setAttribute('onclick', '' )
                 let image = document.createElement('img')
-                image.setAttribute('src',students[i].Photo)
+                image.setAttribute('src',results[i].Photo)
                 let container = document.createElement('div')
                 let nameHeading = document.createElement('h1')
-                nameHeading.innerHTML = students[i].Name
+                nameHeading.innerHTML = results[i].Name
                 let smallerContainer = document.createElement('div')
+                smallerContainer.className = 'result-container'
                 let age = document.createElement('p')
-                age.innerHTML = students[i].Age
+                age.innerHTML = results[i].Age
                 let YOS = document.createElement('p')
-                YOS.innerHTML = students[i]['Year of Study']
+                YOS.innerHTML = results[i]['Year of Study']
 
                 smallerContainer.appendChild(age)
                 smallerContainer.appendChild(YOS)
@@ -901,13 +914,43 @@ function search(){
                 container.appendChild(nameHeading)
                 div.appendChild(image)
                 div.appendChild(container)
-
+                div.addEventListener('click', function() {
+                    window.location.href = 'searchResult.html'
+                    localStorage.setItem('search', JSON.stringify(results[i]))
+                    
+                });
                 document.getElementById('results').appendChild(div)
-            }
         }
-        console.log(results)
+
+
+        
     })
     .catch(function(error){
         console.log(error);
     });
+}
+
+
+function renderSearchResult(){
+      
+    student = JSON.parse(localStorage.getItem('search'))
+    console.log(student, 'dsd')  
+
+    
+        //displaying the data in the appropriate elements
+        document.getElementById('search-name').innerHTML = student.Name;
+        for(i=0; i<student.Interests.length; i +=1){
+            document.getElementById('search-interests').innerHTML += '<li>' +student.Interests[i] + '</li>';
+        }
+        
+        for(i=0; i<student.Hobbies.length; i +=1){
+            document.getElementById('search-hobbies').innerHTML += '<li>' +student.Hobbies[i] + '</li>';
+        }
+        document.getElementById('search-age').innerHTML = student.Age;
+        document.getElementById('search-image').setAttribute('src', student.Photo);
+        document.getElementById('search-rollNo').innerHTML = student['IITB Roll Number'];
+        document.getElementById('search-yos').innerHTML = student['Year of Study']
+        document.getElementById('search-gender').innerHTML = student.Gender
+        
+       
 }

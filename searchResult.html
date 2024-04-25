@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Search- Finder</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+                        <!-- google fonts imported from https://fonts.google.com/ -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Mukta:wght@200;300;400;500;600;700;800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cedarville+Cursive&family=Mukta:wght@200;300;400;500;600;700;800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cedarville+Cursive&family=Mukta:wght@200;300;400;500;600;700;800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    </head>
+    <body onload="renderSearchResult();" style="background-image: url(./assets/matchbg1.jpg);">
+         <nav>
+            <ul class="navbar">
+                <img src="./assets/logo.png" alt="logo" class="nav-logo">
+                <span class="title-nav">Finder</span>
+                <li><a  onclick="detailsFilled = localStorage.getItem('detailsFilled')
+                    if(detailsFilled){
+                        window.location.href='ownProfile.html'
+                    }
+                    else{
+                        window.location.href='dating.html'
+                    }
+                    ">Home</a></li>
+                <li><a class="active" onclick="detailsFilled = localStorage.getItem('detailsFilled')
+                    if(detailsFilled){
+                        window.location.href = 'foundMatch.html'
+                    }
+                    else{
+                        window.location.href = 'detailsNotFilled.html'
+                    }" >Your Match!</a></li>
+                <li><a href="/scroll_or_swipe.html">Find new people!!</a></li>
+                <li><a href="/about.html">About Us</a></li>
+                <li><a href="/login.html" onclick="logoutFun()">Log out</a></li>
+            </ul>
+        </nav>        
+
+
+            
+            <div class="container-div-search">
+
+                <div class="container-1">
+                    <img id="search-image" src="" height="200px" width="200px" ></img>
+                    <div class="details-1">
+                        <h1 id="search-name"></h1>
+                        <h4 id="search-age"></h4>
+                    </div>
+                </div>
+                <p style="margin-left: 10px; margin-bottom: 5px; font-size: 20px;" ><b>ABOUT</b> </p>
+                <div style="width: 80px; height: 7px; background-color: #210634; position: absolute; left: 22.3%; margin-top: -2px;" > </div>
+                <hr>
+    
+                <div class="container-2">
+                    <div class="text-details">
+                        <h3 id="search-head-body">My Interests</h3>
+                        <ul style="margin-left: 20px; margin-bottom: 30px;" id="search-interests"></ul>
+                        <h3 id="search-head-body">My Hobbies</h3>
+                        <ul style="margin-left: 20px;" id="search-hobbies"></ul>
+                    </div>
+                    <div class="table-details">
+                        <h2>Details</h2>
+                        <table id="search-table">
+                            <tr> 
+                                <td> IITB Roll Number</td>
+                                <td id="search-rollNo" ></td>
+                            </tr>
+                            <tr>
+                                <td>Year of Study</td>
+                                <td id="search-yos" ></td>
+                            </tr>
+                            <tr>
+                                <td>Gender</td>
+                                <td id="search-gender"></td>
+                            </tr>
+                        </table>
+                    </div>
+    
+                </div>
+            </div>  
+    
+              <script src="script.js"></script>
+        </body>
+
+        <style>
+            .container-div-search{
+  margin-left: 20%;
+  margin-top:3%;
+  width: 60%;
+  background-color: #210634de;
+  padding: 2%;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 5px 5px 20px rgb(56, 0, 56);
+}
+#search-name{
+  font-size: 50px;
+  font-weight: 400;
+}
+#search-age{
+  padding-left: 5px;
+  font-weight: 400;
+  color: grey;
+  font-size: 30px;
+}
+
+#search-table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#search-table td, #search-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  width: 200px;
+}
+
+#search-table tr:nth-child(even){background-color: #210634c5;}
+
+#search-table tr:hover {background-color: #210634;}
+
+#search-image{
+  border-radius: 10px;
+  box-shadow: #f494f0e8 2px 0px 10px;
+}
+        </style>
+    </html>
