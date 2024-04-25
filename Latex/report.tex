@@ -79,6 +79,182 @@ and then multiplied it by 100 to convert it in percentage. \\
 
 After clicking "Submit," a new tab will display the "right match" for the person, including their details if a match is found. The interface for this is structured in a separate ".html" file named "match.html", utilizing the same CSS ("style.css") and JavaScript ("script.js") files.
 On clicking submit in dating.html, first foundMatch.html is displayed. On hovering over the card in foundMatch.html, user can see the match. In case there is no match... The script leads the user to another webpage where an appropriate message is displayed.
+
+\section{JavaScript Code}
+I've implemented 23 functions, all coded in script.js. Some JavaScript is also present in HTML pages, such as Left NavBar functionality.
+\\
+Following is the brief description of every function used:
+
+\subsection{submitHandler()}
+\begin{itemize}
+    \item Gets called when the submit button is pressed on the dating.html page.
+    \item Takes in the input filled by the user and calls \texttt{findMatch()}.
+    \item Stores the input provided by the user in local storage in the form of JSON. 
+\end{itemize}
+
+\subsection{findMatch()}
+\begin{itemize}
+    \item This function is called when the \texttt{submitHandler()} function is executed.
+    \item It fetches the \texttt{students.json} file.
+    \item Converts the response into a JavaScript object.
+    \item Iterates through the object, calculating compatibility scores between the user and each student.
+    \item Redirects to \texttt{foundMatch.html} upon completion.
+    \item Converts the matched student data into a JSON string and stores it in local storage.
+\end{itemize}
+
+\subsection{renderMatchFound()}
+\begin{itemize}
+    \item This function renders the match on the \texttt{matchFound.html} page.
+    \item It retrieves the matched student data from local storage.
+    \item Checks if the compatibility score is below 0.4 and redirects to \texttt{sorry.html} if so.
+    \item Displays the matched student's name, image, and compatibility score.
+\end{itemize}
+
+\subsection{renderMatch()}
+\begin{itemize}
+    \item This function renders the details of the matched student on the \texttt{match.html} page.
+    \item It retrieves the matched student data from local storage.
+    \item Displays the matched student's name, interests, hobbies, age, image, IITB roll number, year of study, and gender.
+\end{itemize}
+
+\subsection{scoreCalculator(user1, user2)}
+\begin{itemize}
+    \item This function calculates the compatibility score between two users.
+    \item It implements Jaccard's Algorithm to calculate the score based on shared interests and hobbies.
+    \item Returns the compatibility score scaled to a percentage.
+\end{itemize}
+
+\subsection{onLogin()}
+\begin{itemize}
+    \item This function is triggered when the login button is clicked.
+    \item Fetches the \texttt{login.json} file.
+    \item Verifies the entered username and password.
+\end{itemize}
+
+\subsection{checkLoginData(data)}
+\begin{itemize}
+    \item This function verifies the user's login credentials and displays appropriate error messages.
+    \item Retrieves the input username and password.
+    \item Checks if the username exists and if the password matches the username.
+\end{itemize}
+
+\subsection{findSecret()}
+\begin{itemize}
+    \item This function retrieves a user's secret question based on their username.
+    \item Fetches the \texttt{login.json} file.
+    \item Displays the user's secret question if the username exists.
+\end{itemize}
+
+\subsection{checkSecretAnswer()}
+\begin{itemize}
+    \item This function checks the user's secret answer for password recovery.
+    \item Retrieves the entered answer and username.
+    \item Compares the entered answer with the stored secret answer for the given username.
+\end{itemize}
+
+\subsection{checkFilter(person, filter)}
+\begin{itemize}
+    \item This function gets called when someone applies a filter.
+    \item It takes \texttt{filter} and \texttt{person} as input and returns if the person passes the filter.
+\end{itemize}
+
+
+\subsection{scroll()}
+\begin{itemize}
+    \item This function renders everyone (who matches the filters) in the scroll-container.
+    \item It is called when \texttt{scroll\textunderscore or\textunderscore swipe.html} is loaded.
+\end{itemize}
+
+
+\subsection{removeFilters()}
+\begin{itemize}
+    \item This function removes filters applied to the scroll-container.
+    \item It redirects back to \texttt{scroll\textunderscore or\textunderscore swipe.html}.
+\end{itemize}
+
+% Function for logging out
+\subsection{logoutFun()}
+\begin{itemize}
+    \item This function is called when logout is clicked on the navbar.
+    \item It removes all data stored in the local storage to prevent any conflicts if a different user logs in.
+\end{itemize}
+
+% Function for opening the filter bar
+\subsection{openFilterBar()}
+\begin{itemize}
+    \item This function is called when the filter button in the scroll\_or\_swipe.html page is clicked.
+    \item It opens the filter bar by adjusting its height and changes the appearance of the filter button.
+\end{itemize}
+
+% Function for closing the filter bar
+\subsection{closeFilterBar()}
+\begin{itemize}
+    \item This function is called when the filter button in the scroll\_or\_swipe.html page is clicked and the filter bar is open.
+    \item It closes the filter bar by adjusting its height and changes the appearance of the filter button.
+\end{itemize}
+
+% Function for applying filters
+\subsection{FilterFunction()}
+\begin{itemize}
+    \item This function is called when the filter button is clicked in the filter bar in the scroll\_or\_swipe.html page.
+    \item It collects the interests and hobbies selected by the user and stores them in local storage as filter data.
+    \item It then redirects to the scroll\_or\_swipe.html page.
+\end{itemize}
+
+% Function for rendering user details
+\subsection{renderOwnDetails()}
+\begin{itemize}
+    \item This function is triggered when the user clicks on home when on any page other than dating.html.
+    \item It retrieves the user's details and image from local storage and displays them on the page.
+\end{itemize}
+
+% Function for scrolling the scroll container
+\subsection{scroll\_the\_scroll\_container(e)}
+\begin{itemize}
+    \item This function is called when the user presses any key on the scroll\_or\_swipe.html page.
+    \item If the right arrow key is pressed, it scrolls the scroll-container to the next box, displaying the next user.
+    \item If the left arrow key is pressed, it scrolls the scroll-container to the previous box, displaying the previous user.
+\end{itemize}
+
+% Function for setting a cookie
+\subsection{setCookie()}
+\begin{itemize}
+    \item This function sets a cookie named \texttt{username} with the value of the input field with the ID \texttt{username}.
+    \item The cookie expires after 1 hour.
+\end{itemize}
+
+% Function for getting a cookie
+\subsection{getCookie(key)}
+\begin{itemize}
+    \item This function retrieves the value of the cookie with the specified \texttt{key}.
+\end{itemize}
+
+% Function for checking if a cookie exists
+\subsection{checkCookie()}
+\begin{itemize}
+    \item This function checks if the \texttt{username} cookie exists.
+    \item If the cookie exists, it redirects the user to the \texttt{dating.html} page.
+\end{itemize}
+
+% Function for checking if a cookie exists on pages requiring authentication
+\subsection{checkCookiePages()}
+\begin{itemize}
+    \item This function checks if the \texttt{username} cookie exists.
+    \item If the cookie doesn't exist, it redirects the user to the \texttt{login.html} page and displays a prompt to log in.
+\end{itemize}
+
+% Function for removing the filter button if no filters are applied
+\subsection{removeFilterButton()}
+\begin{itemize}
+    \item This function checks if any filters are applied.
+    \item If no filters are applied, it hides the remove filters button.
+\end{itemize}
+
+
+
+
+
+
 % \input{./introduction.tex} %literature survey included in this
 % \input{./work-done.tex}
 % \input{./future-work.tex}
