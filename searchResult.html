@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>Search- Finder</title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href='style.css'>
         <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
                         <!-- google fonts imported from https://fonts.google.com/ -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,7 +28,7 @@
                         window.location.href='dating.html'
                     }
                     ">Home</a></li>
-                <li><a class="active" onclick="detailsFilled = localStorage.getItem('detailsFilled')
+                <li><a onclick="detailsFilled = localStorage.getItem('detailsFilled')
                     if(detailsFilled){
                         window.location.href = 'foundMatch.html'
                     }
@@ -36,6 +36,7 @@
                         window.location.href = 'detailsNotFilled.html'
                     }" >Your Match!</a></li>
                 <li><a href="/scroll_or_swipe.html">Find new people!!</a></li>
+                <li><a href="/search.html" class="active" >Search</a></li>
                 <li><a href="/about.html">About Us</a></li>
                 <li><a href="/login.html" onclick="logoutFun()">Log out</a></li>
             </ul>
@@ -127,7 +128,7 @@
 
 #search-image{
   border-radius: 10px;
-  box-shadow: #f494f0e8 2px 0px 10px;
+  box-shadow: #000000e8 5px 5px 10px;
 }
         </style>
     </html>

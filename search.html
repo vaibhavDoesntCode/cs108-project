@@ -2,13 +2,53 @@
 <html>
     <head>
         <title>Search- Finder</title>
+        <link rel="stylesheet" href="style.css">
+                            <!-- google fonts imported from https://fonts.google.com/ -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Mukta:wght@200;300;400;500;600;700;800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cedarville+Cursive&family=Mukta:wght@200;300;400;500;600;700;800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cedarville+Cursive&family=Mukta:wght@200;300;400;500;600;700;800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
     </head>
-    <body style="background-color: antiquewhite;" onload="renderSearch()">
+    <body style="background: rgb(182,77,185);
+background: linear-gradient(49deg, rgba(182,77,185,1) 0%, rgba(255,255,255,1) 100%);" onload="renderSearch()">
+        <nav>
+            <ul class="navbar">
+                <img src="./assets/logo.png" alt="logo" class="nav-logo">
+                <span class="title-nav">Finder</span>
+                <li><a  onclick="detailsFilled = localStorage.getItem('detailsFilled')
+                    if(detailsFilled){
+                        window.location.href='ownProfile.html'
+                    }
+                    else{
+                        window.location.href='dating.html'
+                    }
+                    ">Home</a></li>
+                <li><a onclick="detailsFilled = localStorage.getItem('detailsFilled')
+                    if(detailsFilled){
+                        window.location.href = 'foundMatch.html'
+                    }
+                    else{
+                        window.location.href = 'detailsNotFilled.html'
+                    }" >Your Match!</a></li>
+                <li><a href="/scroll_or_swipe.html">Find new people!!</a></li>
+                <li><a href="/search.html" onclick="localStorage.setItem('searchResult', '[]')" class="active">Search</a></li>
+                <li><a href="/about.html">About Us</a></li>
+                <li><a href="/login.html" onclick="logoutFun()">Log out</a></li>
+              </ul>
+        </nav>
+
+        <div class="actual-search">
         <form action="#" class="search">
-        <input type="search" name="search" id="search-bar" placeholder="Search">
-        <button type="button" onclick="searchFun()" >Search</button>
+        <input type="search" name="search" id="search-bar" placeholder="Search" class="search-input">
+        <button type="button" onclick="searchFun()" class="search-button" ><div class="search-icon"><img src="./assets/search.png" alt="" width="25px"></div></button>
     </form>
         <div id="results"></div>
+    </div>
         <script src='script.js'></script>
     </body>
 

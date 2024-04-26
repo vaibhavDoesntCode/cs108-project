@@ -870,8 +870,8 @@ function removeFilterButton(){
 
 function searchFun(){
     let searchingFor = document.getElementById('search-bar').value.toLowerCase();
-
-    
+    console.log(searchingFor)
+     
     let pattern = new RegExp(searchingFor);
     results = []
     console.log(pattern);
@@ -882,13 +882,15 @@ function searchFun(){
     })
     .then(function(students){
         // Loop through the students array
+
+        if (searchingFor != ""){
         for(let i = 0; i < students.length; i++){
             // Here you can use pattern.test(students[i]) to test against each student's data
             if(pattern.test(students[i].Name.toLowerCase())){
                 results.push(students[i])
                 
             }
-        }
+        }}
         console.log(results)
         localStorage.setItem('searchResult', JSON.stringify(results))
           window.location.href = 'search.html';
@@ -896,11 +898,12 @@ function searchFun(){
     .catch(function(error){
         console.log(error);
     });
+
 }
 
 function renderSearch(){
     results = JSON.parse(localStorage.getItem('searchResult'));
-
+    console.log()
     if(results != [] && results != null ){
     for(let i = 0; i < results.length; i++){
         let div = document.createElement('div')
@@ -909,18 +912,21 @@ function renderSearch(){
             image.setAttribute('src',results[i].Photo)
             let container = document.createElement('div')
             let nameHeading = document.createElement('h1')
+            nameHeading.className = 'result-name'
             nameHeading.innerHTML = results[i].Name
             let smallerContainer = document.createElement('div')
             smallerContainer.className = 'result-container'
+            smallerContainer.className= 'second-text'
             let age = document.createElement('p')
-            age.innerHTML = results[i].Age
+            age.innerHTML = results[i].Age + ' years old'
             let YOS = document.createElement('p')
-            YOS.innerHTML = results[i]['Year of Study']
+            YOS.innerHTML = 'Currently in ' + results[i]['Year of Study'] + ' year'
 
             smallerContainer.appendChild(age)
             smallerContainer.appendChild(YOS)
-            container.appendChild(smallerContainer)
+            
             container.appendChild(nameHeading)
+            container.appendChild(smallerContainer)
             div.appendChild(image)
             div.appendChild(container)
             div.addEventListener('click', function() {
