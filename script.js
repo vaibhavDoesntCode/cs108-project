@@ -890,44 +890,46 @@ function searchFun(){
             }
         }
         console.log(results)
-         window.location.href = 'search.html';
-        
-        for(let i = 0; i < results.length; i++){
-            let div = document.createElement('div')
-                div.className = 'result-student'
-                div.setAttribute('onclick', '' )
-                let image = document.createElement('img')
-                image.setAttribute('src',results[i].Photo)
-                let container = document.createElement('div')
-                let nameHeading = document.createElement('h1')
-                nameHeading.innerHTML = results[i].Name
-                let smallerContainer = document.createElement('div')
-                smallerContainer.className = 'result-container'
-                let age = document.createElement('p')
-                age.innerHTML = results[i].Age
-                let YOS = document.createElement('p')
-                YOS.innerHTML = results[i]['Year of Study']
-
-                smallerContainer.appendChild(age)
-                smallerContainer.appendChild(YOS)
-                container.appendChild(smallerContainer)
-                container.appendChild(nameHeading)
-                div.appendChild(image)
-                div.appendChild(container)
-                div.addEventListener('click', function() {
-                    window.location.href = 'searchResult.html'
-                    localStorage.setItem('search', JSON.stringify(results[i]))
-                    
-                });
-                document.getElementById('results').appendChild(div)
-        }
-
-
-        
-    })
+        localStorage.setItem('searchResult', JSON.stringify(results))
+          window.location.href = 'search.html';
+      })
     .catch(function(error){
         console.log(error);
     });
+}
+
+function renderSearch(){
+    results = JSON.parse(localStorage.getItem('searchResult'));
+
+    if(results != [] && results != null ){
+    for(let i = 0; i < results.length; i++){
+        let div = document.createElement('div')
+            div.className = 'result-student'
+            let image = document.createElement('img')
+            image.setAttribute('src',results[i].Photo)
+            let container = document.createElement('div')
+            let nameHeading = document.createElement('h1')
+            nameHeading.innerHTML = results[i].Name
+            let smallerContainer = document.createElement('div')
+            smallerContainer.className = 'result-container'
+            let age = document.createElement('p')
+            age.innerHTML = results[i].Age
+            let YOS = document.createElement('p')
+            YOS.innerHTML = results[i]['Year of Study']
+
+            smallerContainer.appendChild(age)
+            smallerContainer.appendChild(YOS)
+            container.appendChild(smallerContainer)
+            container.appendChild(nameHeading)
+            div.appendChild(image)
+            div.appendChild(container)
+            div.addEventListener('click', function() {
+                window.location.href = 'searchResult.html'
+                localStorage.setItem('search', JSON.stringify(results[i]))
+                
+            });
+            document.getElementById('results').appendChild(div)
+    }}
 }
 
 
