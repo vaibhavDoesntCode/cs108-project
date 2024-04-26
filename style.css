@@ -896,8 +896,22 @@ background: linear-gradient(90deg, rgba(253,47,111,1) 0%, rgba(254,87,64,1) 100%
   transform: scale(0.9, 0.9);
 }
 
+/* default search css */
+.default-view-search{
+  width: 99%;
+  margin-top: 20px;
+  height: 575px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  vertical-align: middle;
+  /* border: #21063477 solid 2px; */
+  /* border-radius: 20px; */
 
-
+  /* background-color: rgba(237, 173, 253, 0.307); */
+}
 
 /* extra pages css */
 

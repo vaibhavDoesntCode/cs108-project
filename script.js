@@ -734,7 +734,7 @@ function  FilterFunction(){
 
 function renderOwnDetails() {
     // this function will be triggered when the user clicks on home when on any page other than dating.html
-
+    checkCookiePages();
     // geting details and oimage from the local storage
     var user = JSON.parse(localStorage.getItem('user_details'));
     console.log(user)
@@ -841,11 +841,19 @@ function getCookie(key){
 
 
 function checkCookie(){
+
+    
+
     console.log('bvv')
     let user = getCookie("username")
     if (user != "" ){
-        window.location.href = "dating.html"
+        window.location.href = "scroll_or_swipe.html"
     }
+    else{
+        localStorage.clear()
+    }
+
+    
 }
 
 function checkCookiePages(){
@@ -893,7 +901,7 @@ function searchFun(){
         }}
         console.log(results)
         localStorage.setItem('searchResult', JSON.stringify(results))
-          window.location.href = 'search.html';
+           window.location.href = 'search.html';
       })
     .catch(function(error){
         console.log(error);
@@ -902,8 +910,15 @@ function searchFun(){
 }
 
 function renderSearch(){
+
+    checkCookiePages();
     results = JSON.parse(localStorage.getItem('searchResult'));
-    console.log()
+    console.log(results)
+    if(results.length == 0){
+        console.log('asf')
+         window.location.href = 'noResultFound.html'
+        
+    }
     if(results != [] && results != null ){
     for(let i = 0; i < results.length; i++){
         let div = document.createElement('div')
@@ -930,7 +945,7 @@ function renderSearch(){
             div.appendChild(image)
             div.appendChild(container)
             div.addEventListener('click', function() {
-                window.location.href = 'searchResult.html'
+                 window.location.href = 'searchResult.html'
                 localStorage.setItem('search', JSON.stringify(results[i]))
                 
             });
@@ -940,7 +955,7 @@ function renderSearch(){
 
 
 function renderSearchResult(){
-      
+    checkCookiePages();
     student = JSON.parse(localStorage.getItem('search'))
     console.log(student, 'dsd')  
 
