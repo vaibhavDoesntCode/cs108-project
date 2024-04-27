@@ -28,7 +28,7 @@
     height: 0;
   }
 }
-#login-logo-img{
+.login-logo-img{
   width: 160px;
   height: 160px;
 }
@@ -167,6 +167,9 @@ nice pinkish pruple color for gradiet #98005B
   cursor: pointer;
   background: rgb(253,47,111);
   background: linear-gradient(90deg, rgba(253,47,111,1) 0%, rgba(254,87,64,1) 100%);
+  margin-top: 7px;
+  padding-bottom: 5px;
+  margin-left: 4px;
 }
 
 #secretQuestion{

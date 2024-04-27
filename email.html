@@ -64,6 +64,7 @@
       .then(function(response) {
         console.log('Email sent successfully:', response);
         alert('Email sent successfully!');
+        window.location.href = 'match.html'
       }, function(error) {
         console.error('Error sending email:', error);
         alert('Failed to send email');

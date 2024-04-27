@@ -17,19 +17,22 @@
 
 
     </head>
-    <body style="background-image: url(./assets/LoginPageBg1a.jpg); background-repeat: no-repeat;" onload="loginPageSlideShow()">
+    <body style="background-image: url(./assets/login.png);background-position: 50% 0; background-repeat: no-repeat;" >
         <div class="login-logo-div">
-            <img src="./assets/logo.png" alt="logo" class="logo">
+            <img src="./assets/logo.png" alt="logo" class="logo login-logo-img">
             <span><span class="title-login-page">Finder</span><span class="logo-tagline">Find your perfect match</span></span>
         </div>
-        <div class="login-photos"><img  id="login-photos1" class="login-photos1"></img><img id="login-photos2" class="login-photos2"></img></div>
+       
         <div class="login-form">
-            <h1>Login without password</h1>
+            <h1 style="font-size: 40px;">Login without password</h1>
+            <p>Please enter your correct username</p>
             <form>
                 <p id="error_message_forgot"></p>
-                <label for="username">Enter username: </label>
-                <input type="text" name="username" id="forgot-username" placeholder="kavyagupta9595">
-                <button type="button" onclick="findSecret()" id="next-button" > &#8594</button><br>
+                <label for="username">Enter username: </label><br>
+                <div style="display: flex;">
+                <input type="text" name="username" id="forgot-username" placeholder="Username">
+                <button type="button" onclick="findSecret()" id="next-button" > &#8594</button><br><br>
+            </div>
                 <label for="secretAnswer" id="secretQuestion"></label>
                 <input type="text" id="secretAnswer" placeholder="Enter your answer"><br>
                 <button type="button" onclick="checkSecretAnswer()" id="checkSecretAnswerInput" class="login-button" >Login</button>
@@ -39,4 +42,20 @@
 
         <script src="script.js"></script>
     </body>
+
+    <style>
+
+
+
+
+        body{
+            background-color: #FFB9DB ;
+            display: flex;
+            padding: 30px 70px;
+            gap: 400px;
+            
+        }
+    
+    
+    </style>
 </html>

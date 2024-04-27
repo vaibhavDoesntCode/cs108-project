@@ -435,6 +435,7 @@ function checkSecretAnswer() {
             // converting the answer to lowercase so that capital letters doesnot matter as the secret answer is not something that is case sensitive
             if (enteredAnswer.toLowerCase() === user.secret_answer.toLowerCase() ) {
                 // if verified... n=move to the next page
+                setForgotCookie();
                 window.location.href = "dating.html"
             } else {
                 // case when the answer is wrong
@@ -779,29 +780,50 @@ function scroll_the_scroll_container(e){
 
 
 
-function setCookie(){
-    console.log('function m toh aa rha')
-            const d = new Date();
-            cvalue = document.getElementById('username').value
-            d.setTime(d.getTime() + (1*60*60*1000));
-            let expires = "expires=" + d.toUTCString();
-            document.cookie = "username" + "=" + cvalue + ";" + expires + ";path=/";
-          
+function setCookie() {
+    const d = new Date();
+    const username = document.getElementById('username').value;
+    let encryptedUsername = '';
+    for (let i = 0; i < username.length; i++) {
+        encryptedUsername += username.charCodeAt(i) + '_'; // Using '_' as separator
+    }
+    d.setTime(d.getTime() + (1 * 60 * 60 * 1000));
+    let expires = "expires=" + d.toUTCString();
+    document.cookie = "username" + "=" + encryptedUsername + ";" + expires + ";path=/";
 }
 
-function getCookie(key){
+function setForgotCookie() {
+    const d = new Date();
+    const username = document.getElementById('forgot-username').value;
+    let encryptedUsername = '';
+    for (let i = 0; i < username.length; i++) {
+        encryptedUsername += username.charCodeAt(i) + '_'; // Using '_' as separator
+    }
+    d.setTime(d.getTime() + (1 * 60 * 60 * 1000));
+    let expires = "expires=" + d.toUTCString();
+    document.cookie = "username" + "=" + encryptedUsername + ";" + expires + ";path=/";
+}
+
+
+
+function getCookie(key) {
     let Key = key + '=';
     decodedCookie = decodeURIComponent(document.cookie);
     let arr = decodedCookie.split(';');
-    for(let i = 0; i<arr.length; i+=1){
-        while(arr[i].charAt(0) == ' '){
-            arr[i]= arr[i].substring(1);
+    for (let i = 0; i < arr.length; i += 1) {
+        while (arr[i].charAt(0) == ' ') {
+            arr[i] = arr[i].substring(1);
         }
-        if (arr[i].indexOf(Key) == 0){
-            return arr[i].substring(Key.length, arr[i].length)
+        if (arr[i].indexOf(Key) == 0) {
+            let encryptedUsername = arr[i].substring(Key.length, arr[i].length);
+            let decryptedUsername = '';
+            let parts = encryptedUsername.split('_');
+            for (let j = 0; j < parts.length; j++) {
+                decryptedUsername += String.fromCharCode(parseInt(parts[j]));
+            }
+            return decryptedUsername;
         }
     }
-    console.log('returning  ""')
     return "";
 }
 
