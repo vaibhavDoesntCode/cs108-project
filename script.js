@@ -132,6 +132,8 @@ function submitHandler(){
     localStorage.setItem('detailsFilled', true)
    // localStorage.setItem('CGender', JSON.stringify(choiceGender))
     localStorage.setItem('user_details', JSON.stringify(user_data) )
+
+    localStorage.setItem('liked', JSON.stringify([]))
     
     findMatch(user_data);
 }
@@ -474,6 +476,8 @@ function scroll(){
     // function will be called when scroll_or_swipe.html will be loaded
 
     checkCookiePages();
+    liked = JSON.parse(localStorage.getItem('liked'))
+    
     cont = document.getElementById('scroll-container')
     try {
         student = JSON.parse(localStorage.getItem('user_details'));
@@ -486,7 +490,7 @@ function scroll(){
     var counter = 0;
     var filters = JSON.parse(localStorage.getItem('filterData'))
 
-    fetch('./json_files/students.json')
+    fetch('./json_files/students2.json')
     .then(function(response) {
         return response.json();
     })
@@ -547,10 +551,39 @@ function scroll(){
                     for(x=0; x<student[i].Hobbies.length-1; x+=1) intAndHob.innerHTML += student[i].Hobbies[x] + ", "
                     intAndHob.innerHTML += student[i].Hobbies[student[i].Hobbies.length-1]
 
-                    let scoreImage = document.createElement('img')
-                    scoreImage.setAttribute('src', './assets/heart-hand-drawing.png')
-                    scoreImage.setAttribute('width', '300px')
-                    scoreImage.className = 'score-img'
+                    let likeMeter = document.createElement('div')
+                    
+                    if(liked.includes(student[i].Name)) {
+                        likeMeter.innerHTML = student[i].likes + 1 + " likes";
+                        likeMeter.setAttribute('class', 'liked')
+                    }
+                    else{
+                         likeMeter.innerHTML = student[i].likes + " likes";
+                         likeMeter.setAttribute('class', 'notliked')
+                }
+                    likeMeter.addEventListener('click', function(){
+                        if(!liked.includes(student[i].Name)){
+                        liked.push(student[i].Name)
+                        localStorage.setItem('liked',JSON.stringify(liked))
+                        likeMeter.setAttribute('class', 'liked')
+                        likeMeter.innerHTML = student[i].likes + 1 + " likes";
+                    }else{
+                        index =liked.indexOf(student[i].Name)
+                        liked.splice(index, 1)
+                        console.log
+                        localStorage.setItem('liked',JSON.stringify(liked))
+                        likeMeter.setAttribute('class', 'notliked')
+                        likeMeter.innerHTML = student[i].likes + " likes";
+                    }
+
+
+                    })
+
+
+                    // let scoreImage = document.createElement('img')
+                    // scoreImage.setAttribute('src', './assets/heart-hand-drawing.png')
+                    // scoreImage.setAttribute('width', '300px')
+                    // scoreImage.className = 'score-img'
                     
                     //  scoreImage.innerHTML = '<p><b>'+ 'sk damc'+'%</b><br>Match</p>'
                     
@@ -576,6 +609,7 @@ function scroll(){
                     UltrasmallerContainer.appendChild(studentName);
                     UltrasmallerContainer.appendChild(basicDetails)
                     UltrasmallerContainer.appendChild(intAndHob);
+                    UltrasmallerContainer.appendChild(likeMeter)
                     // UltrasmallerContainer.appendChild(scoreDisplay)
                     // UltrasmallerContainer.appendChild(scoreImage)
                     smallerContainer.appendChild(UltrasmallerContainer)

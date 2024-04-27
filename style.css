@@ -177,7 +177,7 @@ nice pinkish pruple color for gradiet #98005B
 }
 
 
-/*code for scroll.html*/
+/*code for scroll_or_swipe.html*/
 
 
   .scroll-container {
@@ -331,11 +331,6 @@ background-color: #9c7da152;
 
 
 
-
-.scoreDisplay{
-  background-image: url(./assets/heart-hand-drawing.png);
-}
-
 .scroll-image{
   border-radius:0 50% 50% 0;
   width: 80vh;
@@ -349,12 +344,34 @@ background-color: #9c7da152;
   top: -100px;
 }
 
-.score-scroll{
+.notliked{
+  
+  cursor: pointer;
+  width: 140px;
+  height: 40px;
+  padding: 5px 10px;
   text-align: center;
-  position: relative;
-  left: 330px;
-  top: 90px;
-  z-index: 2;
+  border: black 4px solid;
+  border-radius: 40px;
+  margin-top: 150px;
+  margin-left: 0px;
+  
+}
+
+.liked{
+  background-color: red;
+  color: white;
+    
+  cursor: pointer;
+  width: 140px;
+  height: 40px;
+  padding: 5px 10px;
+  text-align: center;
+  border: black 4px solid;
+  border-radius: 40px;
+  margin-top: 150px;
+  margin-left: 0px;
+  
 }
 
 /* @media screen and (max-height: 450px) {

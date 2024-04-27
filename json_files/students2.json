@@ -8,7 +8,8 @@
         "Interests": ["Traveling", "Music"],
         "Hobbies": ["Reading", "Playing musical instruments"],
         "Email": "aryan@example.com",
-        "Photo": "photos/aryan_sharma.png"
+        "Photo": "photos/aryan_sharma.png",
+        "likes": 10
     },
     {
         "IITB Roll Number": "2023002",
@@ -19,7 +20,8 @@
         "Interests": ["Movies", "Art"],
         "Hobbies": ["Cooking", "Painting"],
         "Email": "vaibhavsingh84334@gmail.com",
-        "Photo": "photos/aditi_singh.png"
+        "Photo": "photos/aditi_singh.png",
+        "likes": 11
     },
     {
         "IITB Roll Number": "2023003",
@@ -30,7 +32,8 @@
         "Interests": ["Technology", "Sports"],
         "Hobbies": ["Coding", "Watching YouTube/Instagram"],
         "Email": "rahul@example.com",
-        "Photo": "photos/rahul_patel.png"
+        "Photo": "photos/rahul_patel.png",
+        "likes": 12
     },
     {
         "IITB Roll Number": "2023004",
@@ -41,7 +44,8 @@
         "Interests": ["Literature", "Fashion"],
         "Hobbies": ["Gardening", "Painting"],
         "Email": "sneha@example.com",
-        "Photo": "photos/sneha_desai.png"
+        "Photo": "photos/sneha_desai.png",
+        "likes": 8
     },
     {
         "IITB Roll Number": "2023005",
@@ -52,7 +56,8 @@
         "Interests": ["Movies", "Technology"],
         "Hobbies": ["Playing musical instruments", "Watching YouTube/Instagram"],
         "Email": "rohan@example.com",
-        "Photo": "photos/rohan_gupta.jpg"
+        "Photo": "photos/rohan_gupta.jpg",
+        "likes": 13
     },
     {
         "IITB Roll Number": "2023006",
@@ -63,7 +68,8 @@
         "Interests": ["Art", "Music"],
         "Hobbies": ["Reading", "Painting"],
         "Email": "neha@example.com",
-        "Photo": "photos/neha_reddy.png"
+        "Photo": "photos/neha_reddy.png",
+        "likes": 7
     },
     {
         "IITB Roll Number": "2023007",
@@ -74,7 +80,8 @@
         "Interests": ["Sports", "Technology"],
         "Hobbies": ["Coding", "Watching YouTube/Instagram"],
         "Email": "vivek@example.com",
-        "Photo": "photos/vivek_kumar.jpg"
+        "Photo": "photos/vivek_kumar.jpg",
+        "likes": 9
     },
     {
         "IITB Roll Number": "2023013",
@@ -85,7 +92,8 @@
         "Interests": ["Traveling", "Photography"],
         "Hobbies": ["Reading", "Playing musical instruments"],
         "Email": "kunal@example.com",
-        "Photo": "photos/deepika_singh.jpg"
+        "Photo": "photos/deepika_singh.jpg",
+        "likes": 11
     },
     {
         "IITB Roll Number": "2023014",
@@ -96,7 +104,8 @@
         "Interests": ["Music", "Cooking"],
         "Hobbies": ["Painting", "Cooking"],
         "Email": "swati@example.com",
-        "Photo": "photos/deepika_singh.jpg"
+        "Photo": "photos/deepika_singh.jpg",
+        "likes": 7
     },
     {
         "IITB Roll Number": "2023015",
@@ -107,7 +116,8 @@
         "Interests": ["Sports", "Technology"],
         "Hobbies": ["Coding", "Reading"],
         "Email": "rajesh@example.com",
-        "Photo": "photos/deepika_singh.jpg"
+        "Photo": "photos/deepika_singh.jpg",
+        "likes": 15
     },
     {
         "IITB Roll Number": "2023016",
@@ -118,7 +128,8 @@
         "Interests": ["Art", "Reading"],
         "Hobbies": ["Reading", "Painting"],
         "Email": "neha.mehta@example.com",
-        "Photo": "photos/deepika_singh.jpg"
+        "Photo": "photos/deepika_singh.jpg",
+        "likes": 14
     },
     {
         "IITB Roll Number": "2023017",
@@ -129,7 +140,8 @@
         "Interests": ["Movies", "Technology"],
         "Hobbies": ["Watching YouTube/Instagram", "Coding"],
         "Email": "vikram@example.com",
-        "Photo": "photos/deepika_singh.jpg"
+        "Photo": "photos/deepika_singh.jpg",
+        "likes": 10
     },
     {
         "IITB Roll Number": "2023018",
@@ -140,7 +152,8 @@
         "Interests": ["Fashion", "Music"],
         "Hobbies": ["Playing musical instruments", "Reading"],
         "Email": "anushka@example.com",
-        "Photo": "photos/deepika_singh.jpg"
+        "Photo": "photos/deepika_singh.jpg",
+        "likes": 8
     },
     {
         "IITB Roll Number": "2023019",
@@ -151,7 +164,8 @@
         "Interests": ["Technology", "Reading"],
         "Hobbies": ["Coding", "Reading"],
         "Email": "rajat@example.com",
-        "Photo": "photos/deepika_singh.jpg"
+        "Photo": "photos/deepika_singh.jpg",
+        "likes": 12
     },
     {
         "IITB Roll Number": "2023020",
@@ -162,7 +176,8 @@
         "Interests": ["Movies", "Traveling"],
         "Hobbies": ["Watching YouTube/Instagram", "Reading"],
         "Email": "jiya@example.com",
-        "Photo": "photos/deepika_singh.jpg"
+        "Photo": "photos/deepika_singh.jpg",
+        "likes": 6
     },
     {
         "IITB Roll Number": "2023021",
@@ -173,7 +188,8 @@
         "Interests": ["Sports", "Technology"],
         "Hobbies": ["Coding", "Playing musical instruments"],
         "Email": "arun@example.com",
-        "Photo": "photos/deepika_singh.jpg"
+        "Photo": "photos/deepika_singh.jpg",
+        "likes": 11
     },
     {
         "IITB Roll Number": "2023022",
@@ -184,6 +200,7 @@
         "Interests": ["Art", "Fashion"],
         "Hobbies": ["Painting", "Cooking"],
         "Email": "kriti@example.com",
-        "Photo": "photos/deepika_singh.jpg"
+        "Photo": "photos/deepika_singh.jpg",
+        "likes": 8
     }
 ]
