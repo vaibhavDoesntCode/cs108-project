@@ -1,33 +1,12 @@
 
-% (Abstracted from a Major Project Report at CSED, NIT Calicut but can be
-% modified easily to use for other reports also.)
-%
-% Released under Creative Commons Attribution license (CC-BY)
-% Info: http://creativecommons.org/licenses/by/3.0/
-%
-% Created by: Kartik Singhal
-% BTech CSE Batch of 2009-13
-% NIT Calicut
-% Contact Info: kartiksinghal@gmail.com
-%
-% It is advisable to learn the basics of LaTeX before using this template.
-% A good resource to start with is http://en.wikibooks.org/wiki/LaTeX/
-%
-% All template fields are marked with a pair of angular brackets e.g. <title here>
-% except for the ones defining citation names in ref.tex.
-%
-% Empty space after chapter/section/subsection titles can be used to insert text.
-%
-% Just compile this file using pdflatex after making all required changes.
-
 \documentclass[12pt,a4paper]{article}
 \usepackage[pdftex]{graphicx} %for embedding images
 \usepackage{url} %for proper url entries
 \usepackage[bookmarks, colorlinks=false, pdfborder={0 0 0}, pdftitle={<pdf title here>}, pdfauthor={<author's name here>}, pdfsubject={<subject here>}, pdfkeywords={<keywords here>}]{hyperref} %for creating links in the pdf version and other additional pdf attributes, no effect on the printed document
-%\usepackage[final]{pdfpages} %for embedding another pdf, remove if not required
+
 
 \begin{document}
-% \renewcommand\bibname{References} %Renames "Bibliography" to "References" on ref page
+
 
 %include other pages
 \input{./title.tex}
@@ -80,19 +59,70 @@ and then multiplied it by 100 to convert it in percentage. \\
 After clicking "Submit," a new tab will display the "right match" for the person, including their details if a match is found. The interface for this is structured in a separate ".html" file named "match.html", utilizing the same CSS ("style.css") and JavaScript ("script.js") files.
 On clicking submit in dating.html, first foundMatch.html is displayed. On hovering over the card in foundMatch.html, user can see the match. In case there is no match... The script leads the user to another webpage where an appropriate message is displayed.
 
+\section{Customisations}
+\subsection{Search}
+It is a basic user search operation. With this feature, users can browse through potential matches by inputting specific names or keywords, enabling them to find individuals they are interested in connecting with.
+\begin{itemize}
+    \item HTML pages involved \begin{itemize}
+        \item \texttt{search.html}: It will display the search results.
+        \item \texttt{defaultSearch.html}: This is the default page for search. This page opens when search on navigation bar is clicked.
+        \item \texttt{noResultFound}: This page appeaars if there is no person matching the keywords entered by the user.
+        \item \texttt{searchResult}: This page displays the student on which the user clicked on while on \texttt{search.html} 
+    \end{itemize}
+    \item JavaScript functions involved: \begin{itemize}
+        \item \texttt{searchFun()}
+        \item \texttt{renderSearch()}
+        \item \texttt{renderSearchResult}
+    \end{itemize}
+\end{itemize}
+At first, what the search function does is taking the input from the user and after that constructs valid regular expressions based on that input for checking each name entered by a user. When a user’s name is discovered through matching such regular expressions, there will appear clickable divisions having names listed alongside other necessary information about the individual named. The full information for every specific user can be displayed by clicking on any of these divisions on the page. These is achieved by storing their data in local storage and then rendering it.
+\subsection{Sending mail to the right match}
+With this feature any user can a message to his or her 'Perfect' match. The 'Perfect Mail' can recieve the mail from justvingh@gmail.com. The perfect match can choose to reply and the reply will be sent to the user that sent the inital message.\begin{itemize}
+    \item HTML page involved: \begin{itemize}
+        \item \texttt{email.html}: This page can be opened by clicking on the 'Message' button present in \texttt{match.html}. 
+    \end{itemize}
+    \item Function involved:\begin{itemize}
+        \item \texttt{sendEmail(email,name,matchEmail,matchName, message)}
+    \end{itemize}
+This function works using EmailJs library. I made the template on \underline{\href{https://www.emailjs.com/}{this website}}. Code for this feature(both CSS and JavaScript) is written in the HTML file to avoid conflicts in importing two JavaScript files(JavaScript file used in send mails is \underline{\href{https://cdn.emailjs.com/dist/email.min.js}{https://cdn.emailjs.com/dist/email.min.js}}).      
+\end{itemize}
+\subsection{Cookies}
+\subsection{Filters}
+By adding filters based on interests, hobbies, year of study, and gender, we're making the matchmaking experience feel more personal. Users can now narrow down their search to find profiles that really resonate with them. This means when they're scrolling or swiping, they'll only see profiles that match their preferences, making it easier for them to find someone they connect with.
+\begin{itemize}
+    \item HTML page involved:\begin{itemize}
+        \item Nothing exclusively for this feature. Incorporated in \texttt{scroll\_or\_swipe.html}.
+    \end{itemize}
+    \item JavaScript functions involved: \begin{itemize}
+        \item \texttt{checkFilter(person, filter)}
+        \item \texttt{removeFilters()}
+        \item \texttt{openFilterBar()}
+        \item \texttt{closeFilterBar()}
+        \item \texttt{FilterFunction()}
+    \end{itemize}
+\end{itemize}
+First, i take the input from the \texttt{scroll\_or\_swipe.html}. Then i check every user if they follow those filters.  
+\subsection{Profile Page}
+\subsection{Sexual Orientation of user}
+
+
+
+
+
+
 \section{JavaScript Code}
-I've implemented 23 functions, all coded in script.js. Some JavaScript is also present in HTML pages, such as Left NavBar functionality.
+I've implemented 26 functions, all coded in script.js. Some JavaScript is also present in HTML pages, such as Left NavBar functionality.
 \\
 Following is the brief description of every function used:
 
-\subsection{submitHandler()}
+\subsection{\texttt{submitHandler()}}
 \begin{itemize}
     \item Gets called when the submit button is pressed on the dating.html page.
     \item Takes in the input filled by the user and calls \texttt{findMatch()}.
-    \item Stores the input provided by the user in local storage in the form of JSON. 
+    \item Stores the input provided by the user in local storage in the form of JavaScript object. 
 \end{itemize}
 
-\subsection{findMatch()}
+\subsection{\texttt{findMatch()}}
 \begin{itemize}
     \item This function is called when the \texttt{submitHandler()} function is executed.
     \item It fetches the \texttt{students.json} file.
@@ -102,152 +132,177 @@ Following is the brief description of every function used:
     \item Converts the matched student data into a JSON string and stores it in local storage.
 \end{itemize}
 
-\subsection{renderMatchFound()}
+\subsection{\texttt{renderMatchFound()}}
 \begin{itemize}
     \item This function renders the match on the \texttt{matchFound.html} page.
     \item It retrieves the matched student data from local storage.
-    \item Checks if the compatibility score is below 0.4 and redirects to \texttt{sorry.html} if so.
+    \item Checks if the compatibility score is below 0.4, it redirects to \texttt{sorry.html}.
     \item Displays the matched student's name, image, and compatibility score.
 \end{itemize}
 
-\subsection{renderMatch()}
+\subsection{\texttt{renderMatch()}}
 \begin{itemize}
     \item This function renders the details of the matched student on the \texttt{match.html} page.
     \item It retrieves the matched student data from local storage.
     \item Displays the matched student's name, interests, hobbies, age, image, IITB roll number, year of study, and gender.
 \end{itemize}
 
-\subsection{scoreCalculator(user1, user2)}
+\subsection{\texttt{scoreCalculator(user1, user2)}}
 \begin{itemize}
     \item This function calculates the compatibility score between two users.
     \item It implements Jaccard's Algorithm to calculate the score based on shared interests and hobbies.
     \item Returns the compatibility score scaled to a percentage.
 \end{itemize}
 
-\subsection{onLogin()}
+\subsection{\texttt{onLogin()}}
 \begin{itemize}
     \item This function is triggered when the login button is clicked.
     \item Fetches the \texttt{login.json} file.
     \item Verifies the entered username and password.
 \end{itemize}
 
-\subsection{checkLoginData(data)}
+\subsection{\texttt{checkLoginData(data)}}
 \begin{itemize}
     \item This function verifies the user's login credentials and displays appropriate error messages.
     \item Retrieves the input username and password.
     \item Checks if the username exists and if the password matches the username.
 \end{itemize}
 
-\subsection{findSecret()}
+\subsection{\texttt{findSecret()}}
 \begin{itemize}
     \item This function retrieves a user's secret question based on their username.
     \item Fetches the \texttt{login.json} file.
     \item Displays the user's secret question if the username exists.
 \end{itemize}
 
-\subsection{checkSecretAnswer()}
+    \subsection{\texttt{checkSecretAnswer()}}
 \begin{itemize}
     \item This function checks the user's secret answer for password recovery.
     \item Retrieves the entered answer and username.
     \item Compares the entered answer with the stored secret answer for the given username.
 \end{itemize}
 
-\subsection{checkFilter(person, filter)}
+\subsection{\texttt{checkFilter(person, filter)}}
 \begin{itemize}
     \item This function gets called when someone applies a filter.
     \item It takes \texttt{filter} and \texttt{person} as input and returns if the person passes the filter.
 \end{itemize}
 
 
-\subsection{scroll()}
+\subsection{\texttt{scroll()}}
 \begin{itemize}
     \item This function renders everyone (who matches the filters) in the scroll-container.
     \item It is called when \texttt{scroll\textunderscore or\textunderscore swipe.html} is loaded.
 \end{itemize}
 
 
-\subsection{removeFilters()}
+\subsection{\texttt{removeFilters()}}
 \begin{itemize}
     \item This function removes filters applied to the scroll-container.
     \item It redirects back to \texttt{scroll\textunderscore or\textunderscore swipe.html}.
 \end{itemize}
 
 % Function for logging out
-\subsection{logoutFun()}
+\subsection{\texttt{logoutFun()}}
 \begin{itemize}
     \item This function is called when logout is clicked on the navbar.
     \item It removes all data stored in the local storage to prevent any conflicts if a different user logs in.
 \end{itemize}
 
 % Function for opening the filter bar
-\subsection{openFilterBar()}
+\subsection{\texttt{openFilterBar()}}
 \begin{itemize}
-    \item This function is called when the filter button in the scroll\_or\_swipe.html page is clicked.
+    \item This function is called when the filter button in the \texttt{scroll\_or\_swipe.html} page is clicked.
     \item It opens the filter bar by adjusting its height and changes the appearance of the filter button.
 \end{itemize}
 
 % Function for closing the filter bar
-\subsection{closeFilterBar()}
+\subsection{\texttt{closeFilterBar()}}
 \begin{itemize}
-    \item This function is called when the filter button in the scroll\_or\_swipe.html page is clicked and the filter bar is open.
+    \item This function is called when the filter button in the \texttt{scroll\_or\_swipe.html} page is clicked and the filter bar is open.
     \item It closes the filter bar by adjusting its height and changes the appearance of the filter button.
 \end{itemize}
 
 % Function for applying filters
-\subsection{FilterFunction()}
+\subsection{\texttt{FilterFunction()}}
 \begin{itemize}
-    \item This function is called when the filter button is clicked in the filter bar in the scroll\_or\_swipe.html page.
-    \item It collects the interests and hobbies selected by the user and stores them in local storage as filter data.
-    \item It then redirects to the scroll\_or\_swipe.html page.
+    \item This function is called when the filter button is clicked in the filter bar in the \texttt{scroll\_or\_swipe.html} page.
+    \item It collects the interests and hobbies selected by the user and stores them in local storage as \texttt{filterData}.
+    \item It then redirects to the \texttt{scroll\_or\_swipe.html} page.
 \end{itemize}
 
 % Function for rendering user details
-\subsection{renderOwnDetails()}
+\subsection{\texttt{renderOwnDetails()}}
 \begin{itemize}
-    \item This function is triggered when the user clicks on home when on any page other than dating.html.
+    \item This function is triggered when the user clicks on home when on any page other than \texttt{dating.html}.
     \item It retrieves the user's details and image from local storage and displays them on the page.
 \end{itemize}
 
 % Function for scrolling the scroll container
-\subsection{scroll\_the\_scroll\_container(e)}
+\subsection{\texttt{scroll\_the\_scroll\_container(e)}}
 \begin{itemize}
-    \item This function is called when the user presses any key on the scroll\_or\_swipe.html page.
+    \item This function is called when the user presses any key on the \texttt{scroll\_or\_swipe.html} page.
     \item If the right arrow key is pressed, it scrolls the scroll-container to the next box, displaying the next user.
     \item If the left arrow key is pressed, it scrolls the scroll-container to the previous box, displaying the previous user.
 \end{itemize}
 
-% Function for setting a cookie
-\subsection{setCookie()}
+\subsection{\texttt{setCookie()}}
 \begin{itemize}
     \item This function sets a cookie named \texttt{username} with the value of the input field with the ID \texttt{username}.
     \item The cookie expires after 1 hour.
 \end{itemize}
 
 % Function for getting a cookie
-\subsection{getCookie(key)}
+\subsection{\texttt{getCookie(key)}}
 \begin{itemize}
     \item This function retrieves the value of the cookie with the specified \texttt{key}.
 \end{itemize}
 
 % Function for checking if a cookie exists
-\subsection{checkCookie()}
+\subsection{\texttt{checkCookie()}}
 \begin{itemize}
     \item This function checks if the \texttt{username} cookie exists.
-    \item If the cookie exists, it redirects the user to the \texttt{dating.html} page.
+    \item If the cookie exists, it redirects the user to the \texttt{scroll\_or\_swipe.html} page.
+    \item If the cookie does not exists, it clears the local storage.
+    \item This function if for the \texttt{login.html} and \texttt{forget.html}
 \end{itemize}
 
 % Function for checking if a cookie exists on pages requiring authentication
-\subsection{checkCookiePages()}
+\subsection{\texttt{checkCookiePages()}}
 \begin{itemize}
     \item This function checks if the \texttt{username} cookie exists.
     \item If the cookie doesn't exist, it redirects the user to the \texttt{login.html} page and displays a prompt to log in.
+    \item This function is for all the pages other than \texttt{login.html} and \texttt{forget.html}
 \end{itemize}
 
-% Function for removing the filter button if no filters are applied
-\subsection{removeFilterButton()}
+
+\subsection{\texttt{removeFilterButton()}}
 \begin{itemize}
     \item This function checks if any filters are applied.
     \item If no filters are applied, it hides the remove filters button.
+\end{itemize}
+
+\subsection{\texttt{searchFun()}}
+\begin{itemize}
+\item Retrieves the search query from the input field.
+\item Constructs a regular expression pattern based on the search query.
+\item Fetches student data from the \texttt{students.json} file.
+\item Filters the student data based on the search query using the regular expression pattern.
+\item Stores the filtered results in local storage and redirects to the \texttt{search.html} page.
+\end{itemize}
+
+\subsection{\texttt{renderSearch()}}
+\begin{itemize}
+\item Retrieves search results from local storage.
+\item Redirects to \texttt{noResultFound.html} if no results are found.
+\item Dynamically creates HTML elements to display search results including student name, image, age, year of study, etc.
+\item Sets up event listeners to handle clicks on search results, storing the selected student's data in local storage and redirecting to \texttt{searchResult.html}.
+\end{itemize}
+
+\subsection{\texttt{renderSearchResult()}}
+\begin{itemize}
+\item Retrieves the selected student's data from local storage.
+\item Dynamically populates HTML elements with the selected student's details such as name, interests, hobbies, age, etc.
 \end{itemize}
 
 
