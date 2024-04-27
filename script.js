@@ -99,7 +99,7 @@ function submitHandler(){
 
     //image input
     // taking the file as input normally by ".value" doesnt work because the browser converts the path of that image into C://fakepath//{image name}...
-
+    try{
     const selectedFile = document.getElementById('pfp').files[0];
     const reader = new FileReader();
     reader.readAsDataURL(selectedFile);
@@ -111,7 +111,10 @@ function submitHandler(){
     
         // Store data in local storage after it's available
         localStorage.setItem('pfp', base64EncodedData);
-    };
+    };}
+    catch{
+        localStorage.setItem('pfp', './assets/defaultPFP.jpg');
+    }
     
     // console.log(pfp)
 
@@ -133,7 +136,7 @@ function submitHandler(){
    // localStorage.setItem('CGender', JSON.stringify(choiceGender))
     localStorage.setItem('user_details', JSON.stringify(user_data) )
 
-    localStorage.setItem('liked', JSON.stringify([]))
+   
     
     findMatch(user_data);
 }
@@ -345,6 +348,7 @@ function checkLoginData(data){
     }
     setCookie();
     //if everything is right... this function will lead the user to the dating.html
+    localStorage.setItem('liked', JSON.stringify([]))
      window.location.href = "dating.html"
 
     
@@ -490,7 +494,7 @@ function scroll(){
     var counter = 0;
     var filters = JSON.parse(localStorage.getItem('filterData'))
 
-    fetch('./json_files/students2.json')
+    fetch('./json_files/students.json')
     .then(function(response) {
         return response.json();
     })
@@ -552,7 +556,9 @@ function scroll(){
                     intAndHob.innerHTML += student[i].Hobbies[student[i].Hobbies.length-1]
 
                     let likeMeter = document.createElement('div')
-                    
+                    if(student[i].likes == undefined){
+                        likeMeter.className = 'displayNone'
+                    }
                     if(liked.includes(student[i].Name)) {
                         likeMeter.innerHTML = student[i].likes + 1 + " likes";
                         likeMeter.setAttribute('class', 'liked')
@@ -575,9 +581,10 @@ function scroll(){
                         likeMeter.setAttribute('class', 'notliked')
                         likeMeter.innerHTML = student[i].likes + " likes";
                     }
-
-
-                    })
+                })
+                    if(student[i].likes == undefined){
+                        likeMeter.className = 'displayNone'
+                    }
 
 
                     // let scoreImage = document.createElement('img')

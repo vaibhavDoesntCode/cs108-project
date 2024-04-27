@@ -374,6 +374,10 @@ background-color: #9c7da152;
   
 }
 
+.displayNone{
+  display: none;
+}
+
 /* @media screen and (max-height: 450px) {
   .filterBar {padding-top: 15px;}
   .filterBar a {font-size: 18px;}
