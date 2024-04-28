@@ -442,6 +442,7 @@ function checkSecretAnswer() {
             if (enteredAnswer.toLowerCase() === user.secret_answer.toLowerCase() ) {
                 // if verified... n=move to the next page
                 setForgotCookie();
+                localStorage.setItem('liked', JSON.stringify([]))
                 window.location.href = "dating.html"
             } else {
                 // case when the answer is wrong
