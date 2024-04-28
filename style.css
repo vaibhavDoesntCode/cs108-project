@@ -5,6 +5,22 @@
   font-family: cascadiaCode;
   src: url(./assets/Cascadia.ttf);
 }
+@font-face {
+  font-family: Poppins;
+  src: url(./assets/Poppins-Medium.ttf);
+}
+@font-face {
+  font-family: Bebas Neue;
+  src: url(./assets/BebasNeue-Regular.ttf);
+}
+@font-face {
+  font-family: Cedarville Cursive;
+  src: url(./assets/CedarvilleCursive-Regular.ttf);
+}
+@font-face {
+  font-family: Mukta;
+  src: url(./assets/Mukta-Regular.ttf);
+}
 
 
 *{
@@ -638,7 +654,6 @@ color: #1a0303;
 /* about us page design */
 .about-content{
   margin-left: 16%;
-  font-family: "Pacifico", cursive;
   font-size: 20px;
 }
 
